@@ -44,6 +44,10 @@ jobs:
       with:
        path: ${{ github.workspace }}
 
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: ${{ github.workspace }}
+
     - name: Create new microservice
       run: mvn -B -s $GITHUB_WORKSPACE/settings.xml -P github archetype:generate 
                        -DinteractiveMode=false   
