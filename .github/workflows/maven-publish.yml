@@ -43,7 +43,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
        name: org.gunnarro.microservice:spring-boot-microservice-archetype:1.0.0-SNAPSHOT:jar
-       path: ${{ github.workspace/ }}
+       path: ${{ github.workspace }}
 
     - name: Create new microservice
       run: mvn -B -s $GITHUB_WORKSPACE/settings.xml -P github archetype:generate 
