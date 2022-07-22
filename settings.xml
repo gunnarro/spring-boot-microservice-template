@@ -35,6 +35,11 @@
             <enabled>true</enabled>
           </snapshots>
         </repository>
+      </repositories>
+    </profile>
+    <profile>
+      <id>archetype</id>
+      <repositories>
         <repository>
           <id>archetype</id>
           <url>https://maven.pkg.github.com/gunnarro/microservice-archetype</url>
