@@ -11,7 +11,7 @@
 
     <modules>
         <!-- holder module for generated microservice, this in order to test and analyse generated code-->
-        <module>my-microservice</module>
+        <!-- module>my-microservice</module -->
     </modules>
 
     <properties>
