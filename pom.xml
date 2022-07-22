@@ -7,7 +7,7 @@
     <artifactId>microservice-archetype-test</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>Microservice Archetype Test</name>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <modules>
         <!-- holder module for generated microservice, this in order to test and analyse generated code-->
