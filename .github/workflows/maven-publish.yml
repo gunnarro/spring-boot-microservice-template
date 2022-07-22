@@ -33,21 +33,8 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
-#    - name: Create Spring Boot Microservice
-#      run: mvn -B clean install --file pom.xml -s $GITHUB_WORKSPACE/settings.xml -P github
-
-    - name: Create new microservice
-      run: mvn -B -s $GITHUB_WORKSPACE/settings.xml archetype:generate 
-                       -DinteractiveMode=false   
-                       -DarchetypeGroupId=org.gunnarro.microservice 
-                       -DarchetypeArtifactId=spring-boot-microservice-archetype 
-                       -DarchetypeVersion=1.0.0-SNAPSHOT 
-                       -DgroupId=org.gunnarro.microservice 
-                       -DartifactId=my-microservice 
-                       -Dversion=1.0.0-SNAPSHOT 
-                       -Dservicename=mymicroservice
-                       -DoutputDirectory=target
-    
+    - name: Create Spring Boot Microservice
+      run: mvn -B clean install --file pom.xml -s $GITHUB_WORKSPACE/settings.xml -P github
   
         
 #    - name: Test my-microservice
