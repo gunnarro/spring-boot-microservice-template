@@ -6,6 +6,8 @@ name: Spring Boot Microservice template
 on:
   release:
     types: [created]
+    
+  workflow_dispatch:
 
 env: 
   SERVER_IDENTITY_KEYSTORE_PATH: 'src/main/resources/gunnarro-microservice.jks'
