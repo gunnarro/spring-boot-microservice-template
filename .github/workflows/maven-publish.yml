@@ -42,7 +42,6 @@ jobs:
     - name: downlaod archetype
       uses: actions/download-artifact@v3
       with:
-       name: org.gunnarro.microservice:spring-boot-microservice-archetype:1.0.0-SNAPSHOT
        path: ${{ github.workspace }}
 
     - name: Create new microservice
