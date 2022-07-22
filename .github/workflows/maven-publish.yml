@@ -33,9 +33,12 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
-    - name: download archetype
-      run: mvn -B clean install -f pom.xml -s $GITHUB_WORKSPACE/settings.xml -P github -Dmaven.repo.local=$GITHUB_WORKSPACE/.m2
-  
+#    - name: download archetype
+#      run: mvn -B clean install -f pom.xml -s $GITHUB_WORKSPACE/settings.xml -P github -Dmaven.repo.local=$GITHUB_WORKSPACE/.m2
+
+    - name: get archetype
+      run: vn dependency:get -Dartifact=org.gunnarro.microservice:spring-boot-microservice-archetype:1.0.0-SNAPSHOT:jar:sources -s $GITHUB_WORKSPACE/settings.xml -P github 
+
     - name: Create new microservice
       run: mvn -B -s $GITHUB_WORKSPACE/settings.xml -P github archetype:generate 
                        -DinteractiveMode=false   
