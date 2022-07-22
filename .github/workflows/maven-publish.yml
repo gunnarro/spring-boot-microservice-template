@@ -7,6 +7,12 @@ on:
   release:
     types: [created]
 
+env: 
+  SERVER_IDENTITY_KEYSTORE_PATH: 'src/main/resources/gunnarro-microservice.jks'
+  SERVER_IDENTITY_KEYSTORE_PASS: 'test'
+  SERVER_IDENTITY_KEYSTORE_ALIAS: 'gunnarro-microservice'
+  GITHUB_TOKEN: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
+
 jobs:
   build:
 
@@ -25,10 +31,5 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-
-    - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+    - name: Create Spring Boot Microservice
+      run: mvn -B clean install --file pom.xml -s $GITHUB_WORKSPACE/settings.xml -P github
