@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.gunnarro.microservice</groupId>
+    <artifactId>microservice-archetype-test</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Microservice Archetype Test</name>
+    <packaging>pom</packaging>
+
+    <modules>
+        <!-- holder module for generated microservice, this in order to test and analyse generated code-->
+        <module>my-microservice</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+  
+   <dependencies>
+      <!-- get archetype -->
+     <dependency>
+        <groupId>org.gunnarro.microservice</groupId>
+        <artifactId>spring-boot-microservice-archetype</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+     </dependency>
+     <!-- get commom pom -->
+     <dependency>
+        <groupId>org.gunnarro.microservice</groupId>
+        <artifactId>spring-boot-microservice-common-pom</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+     <dependency>
+   </dependencies>
+  
+</project>
