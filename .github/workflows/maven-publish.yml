@@ -37,7 +37,7 @@ jobs:
       run: mvn -B clean install -f pom.xml -s $GITHUB_WORKSPACE/settings.xml -P github
   
     - name: Create new microservice
-      run: mvn -B -s $GITHUB_WORKSPACE/settings.xml archetype:generate 
+      run: mvn -B archetype:generate 
                        -DinteractiveMode=false   
                        -DarchetypeGroupId=org.gunnarro.microservice 
                        -DarchetypeArtifactId=spring-boot-microservice-archetype 
