@@ -60,6 +60,9 @@ jobs:
                        -Dversion=1.0.0-SNAPSHOT 
                        -Dservicename=mymicroservice
                        -DoutputDirectory=target
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
+        GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
     
 
         
