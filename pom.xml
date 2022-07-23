@@ -20,18 +20,18 @@
     </properties>
   
    <dependencies>
-      <!-- get archetype -->
+     <!--
      <dependency>
         <groupId>org.gunnarro.microservice</groupId>
         <artifactId>spring-boot-microservice-archetype</artifactId>
         <version>1.0.0-SNAPSHOT</version>
      </dependency>
-     <!-- get commom pom -->
      <dependency>
         <groupId>org.gunnarro.microservice</groupId>
         <artifactId>spring-boot-microservice-common-pom</artifactId>
         <version>1.0.0-SNAPSHOT</version>
      </dependency>
+     -->
    </dependencies>
   
    <profiles>
