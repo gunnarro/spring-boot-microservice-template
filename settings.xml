@@ -20,6 +20,18 @@
         </server>
     </servers>
 
+  <!-- send all repository requests to one repository -->
+  <!--
+  <mirrors>
+        <mirror>
+            <id>github-packages</id>
+            <name>github packages</name>
+            <url>https://maven.pkg.github.com/gunnarro/microservice-archetype</url>
+            <mirrorOf>*</mirrorOf>
+        </mirror>
+    </mirrors>
+  -->
+  
   <profiles>
     <profile>
       <id>github</id>
