@@ -46,5 +46,8 @@
                 </repository>
             </distributionManagement>
         </profile>
+       <profile>
+           <id>archetype</id>
+       </profile>
     </profiles>
 </project>
