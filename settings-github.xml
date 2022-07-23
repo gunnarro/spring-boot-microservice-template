@@ -8,9 +8,9 @@
 
     <mirrors>
         <mirror>
-            <id>mrm-maven-plugin</id>
-            <name>Mock Repository Manager</name>
-            <url>http://www.mycompany.com/maven-repository-manager</url>
+            <id>maven-central</id>
+            <name>Maven Central</name>
+            <url>https://repo1.maven.org/maven2</url>
             <mirrorOf>*,!archetype</mirrorOf>
         </mirror>
     </mirrors>
