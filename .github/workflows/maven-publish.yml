@@ -40,7 +40,7 @@ jobs:
       working-directory: ${{ github.workspace }}
 
     - name: Create new microservice
-      run: mvn -B -f pom-github-packages.xml -s $GITHUB_WORKSPACE/settings-github.xml archetype:generate
+      run: mvn -B -f pom-github-packages.xml -s $GITHUB_WORKSPACE/settings-github.xml clean archetype:generate
                        -DinteractiveMode=false   
                        -DarchetypeGroupId=org.gunnarro.microservice 
                        -DarchetypeArtifactId=spring-boot-microservice-archetype 
