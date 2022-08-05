@@ -62,11 +62,23 @@ jobs:
                        -DoutputDirectory=target
       env:
         GITHUB_TOKEN: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
-        GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
-    
-    - name: Display structure of microservice
-      run: ls -R
-      working-directory: ${{ github.workspace }}/target
+        GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}    
         
-#    - name: Test my-microservice
-#      run: mvn --quiet -B clean install -f target/my-microservice/pom.xml
+    - name: copy generated sorce code
+      run: | 
+        rsync -rv target/my-microservice/src/* ./src
+    
+    - name: commit and push code changes
+      run: |
+        if ! git diff --exit-code; then 
+          git config --global user.email "gunnar_ronneberg@yahoo.no"
+          git config --global user.name "gunnarro"
+          git add src/
+          git commit -m "github action updated microservice template"
+          git push
+        else
+          echo "nothing to commit"
+        fi
+        
+#    - name: Test microservice template
+#      run: mvn --quiet -B clean install -f pom.xml
