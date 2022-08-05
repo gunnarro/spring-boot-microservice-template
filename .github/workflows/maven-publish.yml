@@ -80,7 +80,7 @@ jobs:
      
     - name: commit and push code changes
       run: |
-        if ! git diff --exit-code; then 
+        if ! git diff --cached --exit-code; then 
           git config --global user.email "gunnar_ronneberg@yahoo.no"
           git config --global user.name "gunnarro"
           git commit -m "github action updated microservice template"
