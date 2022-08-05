@@ -66,7 +66,7 @@ jobs:
         
     - name: copy generated sorce code
       run: | 
-        rsync -rv target/my-microservice/src/* src
+        rsync -rv target/my-microservice/src/* ${{ github.workspace }}/src
     
     - name: Display updated src dir
       run: ls -R
@@ -74,7 +74,7 @@ jobs:
     
     - name: Git add changed files
       run: |
-        git add src/
+        git add ${{ github.workspace }}/src
         git status
     
     - name: commit and push code changes
