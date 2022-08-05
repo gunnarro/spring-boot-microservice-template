@@ -57,6 +57,8 @@ jobs:
     - name: copy generated sorce code
       run: | 
         rsync -rv target/my-microservice/src/* ${{ github.workspace }}/src
+        rsync -rv target/my-microservice/config/* ${{ github.workspace }}/config
+        
     
     - name: Display updated src dir
       run: | 
