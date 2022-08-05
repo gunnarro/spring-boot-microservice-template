@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="120">
+
+	<!-- 
+	Location information:
+		- is 1.3 - 5 times slower for synchronous loggers.
+		-  is 4 - 20 times slower asynchronous loggers.
+	 -->
+	 
+	<Properties>
+		<Property name="LOG_PATTERN">
+			%d{ISO8601} SEVERITY="%level" THREAD="%t" UUID="%X{UUID}" CLASS="%c{10}.%M:%L]" %m%n
+		</Property>
+		<Property name="LOG_FILE_NAME" value="mymicroservice" />
+		<Property name="PACKAGE_NAME" value="org.gunnarro.microservice.mymicroservice" />
+	</Properties>
+
+	<Appenders>
+		<Console name="consoleAppender" target="SYSTEM_OUT" follow="true" >
+			<PatternLayout pattern="${LOG_PATTERN}" />
+		</Console>
+
+		<RollingFile name="debugFileAppender" fileName="logs/${LOG_FILE_NAME}.log" filePattern="logs/${LOG_FILE_NAME}.log.%i" >
+			<PatternLayout>
+				<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+		
+		<RollingFile name="performanceLogAppender" fileName="logs/${LOG_FILE_NAME}-performance.log" filePattern="logs/${LOG_FILE_NAME}-performance.log.%i">
+			<PatternLayout>
+				<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+		
+		<RollingFile name="requestLogAppender" fileName="logs/${LOG_FILE_NAME}-request.log" filePattern="logs/${LOG_FILE_NAME}-request.log.%i">
+			<PatternLayout>
+				<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+		
+		<RollingFile name="failedMessagesLogAppender" fileName="logs/${LOG_FILE_NAME}-failures.log" filePattern="logs/${LOG_FILE_NAME}-failures.log.%i">
+			<PatternLayout>
+				<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+	</Appenders>
+
+	<Loggers>
+		<Logger name="${PACKAGE_NAME}" level="DEBUG" additivity="false">
+			<AppenderRef ref="debugFileAppender" />
+			<AppenderRef ref="consoleAppender" />
+		</Logger>
+		
+		<Logger name="${PACKAGE_NAME}.app" level="INFO" additivity="false">
+			<AppenderRef ref="consoleAppender" />
+		</Logger>
+		 
+		<Logger name="org.springframework" level="ERROR" additivity="false">
+			<AppenderRef ref="debugFileAppender" />
+			<AppenderRef ref="consoleAppender" />
+		</Logger>
+		
+		<!-- Turn request logging off as default, set level=DEGBUG in order to turn request logging on -->
+		<logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="OFF" additivity="false">
+			<appender-ref ref="requestLogAppender" />
+		</logger>
+	
+		<logger name="${PACKAGE_NAME}.aspect" level="INFO" additivity="false">
+			<appender-ref ref="performanceLogAppender" />
+		</logger>
+		
+		<!-- ================================================================================== --> 
+		<!-- 							Async log configuration 								-->
+		<!-- ================================================================================== -->
+		<!-- application specific logs will be asynchronous, other root logs is still synchronous -->
+		<!-- logging with location for AsyncLogger is 30-100 times slower than without location 
+		<AsyncLogger name="${PACKAGE_NAME}" level="DEBUG" additivity="false" includeLocation="false">
+	    	<AppenderRef ref="consoleAppender" />
+			<AppenderRef ref="debugFileAppender" />
+	   	 </AsyncLogger>
+		-->
+		
+		<Root level="INFO">
+			<AppenderRef ref="consoleAppender" />
+			<AppenderRef ref="debugFileAppender" />
+		</Root>
+	</Loggers>
+</Configuration>
