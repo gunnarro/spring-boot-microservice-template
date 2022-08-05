@@ -30,8 +30,8 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-        settings-path: ${{ github.workspace }} # location for the settings.xml file
+   #     server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+   #     settings-path: ${{ github.workspace }} # location for the settings.xml file
 
 #    - name: download archetype
 #      run: mvn -B clean install -f pom.xml -s $GITHUB_WORKSPACE/settings.xml -P github -Dmaven.repo.local=$GITHUB_WORKSPACE/.m2
