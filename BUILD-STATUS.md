@@ -1,1 +1,2 @@
-
+[![Run Spring Boot Microservice Archetype](https://github.com/gunnarro/spring-boot-microservice-template/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/gunnarro/spring-boot-microservice-template/actions/workflows/maven-publish.yml)
+[![Build Spring Boot Microservice Template](https://github.com/gunnarro/spring-boot-microservice-template/actions/workflows/maven-build.yml/badge.svg)](https://github.com/gunnarro/spring-boot-microservice-template/actions/workflows/maven-build.yml)
