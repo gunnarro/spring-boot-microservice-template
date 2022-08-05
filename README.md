@@ -1,2 +1,2 @@
 # spring-boot-microservice-template
-microservice created with micorservice-archetype
+microservice created with microservice-archetype
