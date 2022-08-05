@@ -1,0 +1,15 @@
+[Unit]
+Description=my-microservice
+After=syslog.target
+ 
+[Service]
+User=spring
+EnvironmentFile=-/microservices/my-microservice/current-application.conf
+WorkingDirectory=/microservices/my-microservice
+ExecStart=/usr/lib/jvm/java-openjdk/bin/java $JAVA_OPTS $LOGGING -jar -Dname=${APP_NAME} current-application
+RestartSec=10
+Restart=on-failure
+SuccessExitStatus=143
+ 
+[Install]
+WantedBy=multi-user.target
