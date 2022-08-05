@@ -64,7 +64,9 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
         GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
     
-
+    - name: Display structure of microservice
+      run: ls -R
+      working-directory: ${{ github.workspace }}/target
         
 #    - name: Test my-microservice
 #      run: mvn --quiet -B clean install -f target/my-microservice/pom.xml
