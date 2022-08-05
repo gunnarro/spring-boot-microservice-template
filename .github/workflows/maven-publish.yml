@@ -66,14 +66,15 @@ jobs:
         
     - name: copy generated sorce code
       run: | 
-        rsync -rv --exclude 'target' target/my-microservice/src/* ./src
+        rsync -rv target/my-microservice/src/* ./src
     
     - name: Display updated src dir
       run: ls -R
       working-directory: ${{ github.workspace }}/src
     
-    - name: Display git status
+    - name: Git add changed files
       run: |
+        git add src/
         git status
     
     - name: commit and push code changes
@@ -81,7 +82,6 @@ jobs:
         if ! git diff --exit-code; then 
           git config --global user.email "gunnar_ronneberg@yahoo.no"
           git config --global user.name "gunnarro"
-          git add src/
           git commit -m "github action updated microservice template"
           git push
         else
