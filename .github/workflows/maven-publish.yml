@@ -67,7 +67,7 @@ jobs:
     - name: Git add changed files
       run: |
         pwd
-        git add ${{ github.workspace }}/src/
+        git add ${{ github.workspace }}/
         git status
      
     - name: commit and push code changes
