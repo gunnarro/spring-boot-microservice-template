@@ -1,6 +1,6 @@
 # This workflow checkout gunnarro micorservice archetype from github packages, thereafter it build the microservice template, commit changes and finally test the microservice.
 
-name: Spring Boot Microservice template
+name: Run Spring Boot Microservice Archetype
 
 on:
   release:
