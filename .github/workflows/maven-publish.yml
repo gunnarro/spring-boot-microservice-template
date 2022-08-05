@@ -13,7 +13,7 @@ env:
   SERVER_IDENTITY_KEYSTORE_PATH: 'src/main/resources/gunnarro-microservice.jks'
   SERVER_IDENTITY_KEYSTORE_PASS: 'test'
   SERVER_IDENTITY_KEYSTORE_ALIAS: 'gunnarro-microservice'
-  GITHUB_TOKEN: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
+#  GITHUB_TOKEN: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
 
 jobs:
   build:
