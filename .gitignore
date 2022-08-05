@@ -1,7 +1,15 @@
-## target folder at the top level of the project structue and paths and contents underneath it
-target/
-target/*
+##############################
+## Java
+##############################
+.mtj.tmp/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
 
-## target folder at any level of the project structue
-**/target
-/target 
+##############################
+## Maven
+##############################
+target/
