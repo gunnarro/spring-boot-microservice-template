@@ -68,6 +68,14 @@ jobs:
       run: | 
         rsync -rv target/my-microservice/src/* ./src
     
+    - name: Display updated src dir
+      run: ls -R
+      working-directory: ${{ github.workspace }}/src
+    
+    - name: Display git status
+      run: |
+        git status
+    
     - name: commit and push code changes
       run: |
         if ! git diff --exit-code; then 
