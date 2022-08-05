@@ -74,6 +74,7 @@ jobs:
     
     - name: Git add changed files
       run: |
+        pwd
         git add ${{ github.workspace }}/src/
         git status
      
