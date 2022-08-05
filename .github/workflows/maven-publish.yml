@@ -71,7 +71,7 @@ jobs:
           git config --global user.email "gunnar_ronneberg@yahoo.no"
           git config --global user.name "gunnarro"
           git commit -m "github action updated microservice template"
-          git push
+          git push https://gunnarro:$GITHUB_TOKEN@github.com/gunnarro/spring-boot-microservice-template.git
         else
           echo "nothing to commit"
         fi
