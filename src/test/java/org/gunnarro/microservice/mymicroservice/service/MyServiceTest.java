@@ -25,7 +25,7 @@ class MyServiceTest extends DefaultTestConfig {
 
     @Test
     void getSubscription() {
-        Mockito.when(dbRepositoryMock.getSubscription(12345678)).thenReturn(Subscription.builder().kurtId(121212).build());
+        Mockito.when(dbRepositoryMock.getSubscription(12345678)).thenReturn(Subscription.builder().customerId(121212).build());
         Assertions.assertNotNull(service.getSubscription(12345678));
     }
 

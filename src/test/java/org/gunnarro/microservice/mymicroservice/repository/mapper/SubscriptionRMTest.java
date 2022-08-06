@@ -23,12 +23,12 @@ class SubscriptionRMTest extends DefaultTestConfig {
 
     @Test
     void mapToSubscription() throws SQLException {
-        given(resultSetMock.getInt("abonnent_nr")).willReturn(12345678);
-        given(resultSetMock.getInt("kurt_id")).willReturn(87654321);
+        given(resultSetMock.getInt("subscription_id")).willReturn(12345678);
+        given(resultSetMock.getInt("customer_id")).willReturn(87654321);
 
         SubscriptionRM subscriptionRowMapper = new SubscriptionRM();
         Subscription subscription = subscriptionRowMapper.mapRow(resultSetMock, 1);
         Assertions.assertEquals(12345678, subscription.getSubscriptionId());
-        Assertions.assertEquals(87654321, subscription.getKurtId());
+        Assertions.assertEquals(87654321, subscription.getCustomerId());
     }
 }

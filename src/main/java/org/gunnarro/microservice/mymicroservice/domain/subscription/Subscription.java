@@ -21,5 +21,5 @@ public class Subscription {
     private Integer subscriptionId;
     @ApiModelProperty(notes = "Unique identifier of the customer. Owner of the subscription.")
     @NotNull
-    private Integer kurtId;
+    private Integer customerId;
 }

@@ -10,14 +10,14 @@ import java.sql.SQLException;
  * TODO Remove or Refactor. This class only serves as an example
  */
 public class SubscriptionRM implements RowMapper<Subscription> {
-    private static final String FIELD_ABONNENT_NR = "abonnent_nr";
-    private static final String FIELD_KURT_ID = "kurt_id";
+    private static final String FIELD_SUBSCRIPTION_ID = "subscription_id";
+    private static final String FIELD_CUSTOMER_ID = "customer_id";
 
     @Override
     public Subscription mapRow(ResultSet rs, int rowNum) throws SQLException {
         return Subscription.builder()
-                .subscriptionId(rs.getInt(FIELD_ABONNENT_NR))
-                .kurtId(rs.getInt(FIELD_KURT_ID))
+                .subscriptionId(rs.getInt(FIELD_SUBSCRIPTION_ID))
+                .customerId(rs.getInt(FIELD_CUSTOMER_ID))
                 .build();
     }
 }
