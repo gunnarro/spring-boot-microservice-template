@@ -7,20 +7,15 @@ import org.gunnarro.microservice.mymicroservice.rest.RestClient.CollectionFormat
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
 
 class RestClientTest extends DefaultTestConfig {
-    @Mock
-    private RestTemplate restTemplateMock;
-
     @BeforeEach
     public void init() {
         MockitoAnnotations.initMocks(this);
@@ -50,36 +45,30 @@ class RestClientTest extends DefaultTestConfig {
 
     @Test
     void createAndValidateUriParameter_value_null() {
-        try {
+        HttpClientErrorException thrown = Assertions.assertThrows(HttpClientErrorException.class, () -> {
             RestClient.createAndValidateUriParameter("name", null);
-            Assertions.fail();
-        } catch (HttpClientErrorException e) {
-            // Verify bad request
-            Assertions.assertEquals(400, e.getRawStatusCode());
-            Assertions.assertEquals(true, e.getMessage().contains("Required parameter value is not set"));
-        }
+        });
+
+        Assertions.assertEquals(400, thrown.getRawStatusCode());
+        Assertions.assertTrue(Objects.requireNonNull(thrown.getMessage()).contains("Required parameter value is not set"));
     }
 
     @Test
     void buildUri_basepath_null() {
-        try {
-            RestClient.buildUri(null, "/accounts", null, null).toString();
-            Assertions.fail();
-        } catch (Exception e) {
-            // Verify application failure
-            Assertions.assertEquals("Url basePath can not be null or empty!", e.getMessage());
-        }
+        ApplicationException thrown = Assertions.assertThrows(ApplicationException.class, () -> {
+            RestClient.buildUri(null, "/accounts", null, null);
+        });
+
+        Assertions.assertEquals("Url basePath can not be null or empty!", thrown.getMessage());
     }
 
     @Test
     void buildUri_basepath_empty() {
-        try {
-            RestClient.buildUri("", "/accounts", null, null).toString();
-            Assertions.fail();
-        } catch (Exception e) {
-            // Verify application failure
-            Assertions.assertEquals("Url basePath can not be null or empty!", e.getMessage());
-        }
+        ApplicationException thrown = Assertions.assertThrows(ApplicationException.class, () -> {
+            RestClient.buildUri(null, "/accounts", null, null);
+        });
+
+        Assertions.assertEquals("Url basePath can not be null or empty!", thrown.getMessage());
     }
 
     @Test

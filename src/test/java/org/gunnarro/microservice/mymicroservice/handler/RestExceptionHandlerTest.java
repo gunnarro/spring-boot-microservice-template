@@ -10,7 +10,6 @@ import org.springframework.web.client.HttpClientErrorException;
 import  org.gunnarro.microservice.mymicroservice.domain.ErrorResponse;
 import  org.gunnarro.microservice.mymicroservice.exception.ApplicationException;
 import  org.gunnarro.microservice.mymicroservice.exception.RestInputValidationException;
-import  org.gunnarro.microservice.mymicroservice.handler.RestExceptionHandler;
 
 class RestExceptionHandlerTest {
 
