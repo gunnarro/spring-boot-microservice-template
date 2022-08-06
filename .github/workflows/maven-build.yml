@@ -31,16 +31,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
         GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
-       
-  code-analyze:
-   needs: build
-   runs-on: ubuntu-latest
-   steps:
-   - name: checkout
-     uses: actions/checkout@v3
       
-   - name: code analyze
-     run: mvn sonar:sonar -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} -Dsonar.host.url=${{ secrets.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: code analyze
+      run: mvn sonar:sonar -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} -Dsonar.host.url=${{ secrets.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
  
