@@ -147,9 +147,9 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     private void logException(final Exception exception, ErrorResponse errorResponse) {
         Integer errorCode = null;
         String errorMsg = null;
-        if (exception instanceof HttpClientErrorException) {
-            errorCode = ((HttpClientErrorException) exception).getStatusCode().value();
-            errorMsg = ((HttpClientErrorException) exception).getResponseBodyAsString();
+        if (exception instanceof HttpClientErrorException httpClientErrorException) {
+            errorCode = httpClientErrorException.getStatusCode().value();
+            errorMsg = httpClientErrorException.getResponseBodyAsString();
         }
         if (errorResponse.getHttpStatus() >= 500) {
             log.error("ErrorCode={}, ErrorMsg={}, ErrorResponse: {}", errorCode, errorMsg, errorResponse);

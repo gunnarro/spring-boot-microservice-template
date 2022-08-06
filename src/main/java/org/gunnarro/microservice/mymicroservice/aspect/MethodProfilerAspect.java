@@ -85,9 +85,8 @@ public class MethodProfilerAspect {
     }
 
     private String getExceptionErrorMsg(RuntimeException exception) {
-        if (exception instanceof HttpClientErrorException) {
-            return String.format("%s, %s", ((HttpClientErrorException) exception).getStatusCode().value(),
-                    ((HttpClientErrorException) exception).getResponseBodyAsString());
+        if (exception instanceof HttpClientErrorException httpClientErrorException) {
+            return String.format("%s, %s", httpClientErrorException.getStatusCode().value(), httpClientErrorException.getResponseBodyAsString());
         } else {
             return exception.getMessage();
         }
