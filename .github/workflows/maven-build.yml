@@ -13,19 +13,31 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: checkout
+      uses: actions/checkout@v3
+    
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
+        
+    - name: install
       run: mvn -B clean install --file pom.xml -P github -s settings-github.xml
       env:
         GITHUB_TOKEN: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
         GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
+       
+  code-analyze:
+   needs: build
+   runs-on: ubuntu-latest
+   steps:
+   - name: code analyze
+     run: mvn sonar:sonar --file pom.xml -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} -Dsonar.host.url=${{ secrets.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+     env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+ 
