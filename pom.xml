@@ -14,7 +14,7 @@
 	<packaging>jar</packaging>
 
 	<name>my-microservice</name>
-	<description></description>
+	<description>Spring Boot Microservice Template</description>
 
 	<organization>
 		<name>gunnarro as</name>
@@ -189,7 +189,6 @@
 			<artifactId>springfox-bean-validators</artifactId>
 			<version>${swagger.version}</version>
 		</dependency>
-		<!-- for test -->
 		<!-- ================= -->
 		<!-- Test dependencies -->
 		<!-- ================= -->
@@ -229,26 +228,26 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-        	<groupId>org.junit.jupiter</groupId>
-        	<artifactId>junit-jupiter-engine</artifactId>
-        	<scope>test</scope>
-        </dependency>
+        		<groupId>org.junit.jupiter</groupId>
+        		<artifactId>junit-jupiter-engine</artifactId>
+        		<scope>test</scope>
+        	</dependency>
 	</dependencies>
 	
 	<profiles>
-        <profile>
-            <!-- only for build and test microservice from github actions -->
-            <id>github</id>
-            <distributionManagement>
-                <repository>
-                    <id>github</id>
-                    <name>GitHub Packages</name>
-                    <url>https://maven.pkg.github.com/gunnarro/microservice-archetype</url>
-                </repository>
-            </distributionManagement>
-        </profile>
-       <profile>
-           <id>archetype</id>
-       </profile>
-    </profiles>
+		<profile>
+		    <!-- only for build and test microservice from github actions -->
+		    <id>github</id>
+		    <distributionManagement>
+			<repository>
+			    <id>github</id>
+			    <name>GitHub Packages</name>
+			    <url>https://maven.pkg.github.com/gunnarro/microservice-archetype</url>
+			</repository>
+		    </distributionManagement>
+		</profile>
+		<profile>
+		   <id>archetype</id>
+		</profile>
+    	</profiles>
 </project>
