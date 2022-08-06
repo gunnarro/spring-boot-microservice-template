@@ -46,7 +46,7 @@ jobs:
                        -DarchetypeArtifactId=spring-boot-microservice-archetype 
                        -DarchetypeVersion=1.0.0-SNAPSHOT 
                        -DgroupId=org.gunnarro.microservice 
-                       -DartifactId=my-microservice 
+                       -DartifactId=spring-boot-microservice-template 
                        -Dversion=1.0.0-SNAPSHOT 
                        -Dservicename=mymicroservice
                        -DoutputDirectory=target
@@ -56,7 +56,7 @@ jobs:
         
     - name: copy generated sorce code
       run: | 
-        rsync -rv --exclude 'target' target/my-microservice/* ${{ github.workspace }}/    
+        rsync -rv --exclude 'target' target/spring-boot-microservice-template/* ${{ github.workspace }}/    
     
     - name: Display updated dirs
       run: | 
