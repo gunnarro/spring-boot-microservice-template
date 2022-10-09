@@ -2,7 +2,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=gunnarro_spring-boot-microservice-template&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=gunnarro_spring-boot-microservice-template)
 
 # mymicroservice
-Service description
+This is a generated spring boot microservice application based on the [spring boot microservice archetype](https://github.com/gunnarro/microservice-archetype)
 
 Name | Firm | Mobile | Email 
 --
