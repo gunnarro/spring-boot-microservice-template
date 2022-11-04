@@ -1,8 +1,5 @@
-[![Microserice Template Known Vulnerabilities](https://snyk.io/test/github/gunnarro/spring-boot-microservice-template/badge.svg)](https://snyk.io/test/github/gunnarro/spring-boot-microservice-template)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=gunnarro_spring-boot-microservice-template&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=gunnarro_spring-boot-microservice-template)
-
 # mymicroservice
-This is a generated spring boot microservice application based on the [spring boot microservice archetype](https://github.com/gunnarro/microservice-archetype)
+Service description
 
 Name | Firm | Mobile | Email 
 --
