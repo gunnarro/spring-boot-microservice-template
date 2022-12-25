@@ -10,7 +10,7 @@
 	</parent>
 
 	<groupId>org.gunnarro.microservice</groupId>
-	<artifactId>my-microservice</artifactId>
+	<artifactId>spring-boot-microservice-template</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
