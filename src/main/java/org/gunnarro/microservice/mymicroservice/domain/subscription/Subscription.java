@@ -22,4 +22,7 @@ public class Subscription {
     @ApiModelProperty(notes = "Unique identifier of the customer. Owner of the subscription.")
     @NotNull
     private Integer customerId;
+    private String name;
+    private String type;
+    private String password;
 }

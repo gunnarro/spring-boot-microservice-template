@@ -1,11 +1,11 @@
 [Unit]
-Description=spring-boot-microservice-template
+Description=my-microservice
 After=syslog.target
  
 [Service]
 User=spring
-EnvironmentFile=-/microservices/spring-boot-microservice-template/current-application.conf
-WorkingDirectory=/microservices/spring-boot-microservice-template
+EnvironmentFile=-/microservices/my-microservice/current-application.conf
+WorkingDirectory=/microservices/my-microservice
 ExecStart=/usr/lib/jvm/java-openjdk/bin/java $JAVA_OPTS $LOGGING -jar -Dname=${APP_NAME} current-application
 RestartSec=10
 Restart=on-failure

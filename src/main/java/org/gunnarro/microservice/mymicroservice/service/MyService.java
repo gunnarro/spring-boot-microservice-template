@@ -9,4 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public interface MyService {
     Subscription getSubscription(Integer subscriptionId);
+
+    Subscription saveSubscription(Subscription subscription);
+
+    void deleteSubscription(Integer subscriptionId);
 }

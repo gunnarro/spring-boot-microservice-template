@@ -32,4 +32,17 @@ public class MyServiceImpl implements MyService {
         }
         return subscription;
     }
+
+    /*
+     * {@inheritDoc}
+     */
+     @Override
+     public Subscription saveSubscription(Subscription subscription) {
+         log.debug("save {}", subscription);
+         return null;
+     }
+
+    public void deleteSubscription(Integer subscriptionId) {
+        log.debug("deleted {}", subscriptionId);
+    }
 }

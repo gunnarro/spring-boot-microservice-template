@@ -11,4 +11,4 @@ import org.gunnarro.microservice.mymicroservice.domain.subscription.Subscription
 public interface DbRepository {
     Subscription getSubscription(Integer subscriptionId);
 }
-//TODO Foreslår at vi ikke overkompleserer koden med interfaces unødvendig
+
