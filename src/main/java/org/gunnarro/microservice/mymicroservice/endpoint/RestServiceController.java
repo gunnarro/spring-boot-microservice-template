@@ -67,11 +67,11 @@ public class RestServiceController {
         return ResponseEntity.ok(myService.saveSubscription(subscription));
     }
 
-    @ApiOperation(value = "Delete subscription", notes = "delete subscription", response = null)
+    @ApiOperation(value = "Delete subscription", notes = "delete subscription with subscriptionId", response = ResponseEntity.class)
     @DeleteMapping(path = "/subscriptions/{subscriptionId}")
-    public ResponseEntity<Subscription> updateSubscription(@PathVariable @NotBlank Integer subscriptionId) {
+    public ResponseEntity<Integer> deleteSubscription(@PathVariable @NotBlank Integer subscriptionId) {
         log.info("delete: {} ", subscriptionId);
         myService.deleteSubscription(subscriptionId);
-        return ResponseEntity.ok();
+        return ResponseEntity.ok(subscriptionId);
     }
 }

@@ -1,20 +1,18 @@
 package org.gunnarro.microservice.mymicroservice.config;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import org.gunnarro.microservice.mymicroservice.DefaultTestConfig;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 
 import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-
-import org.gunnarro.microservice.mymicroservice.DefaultTestConfig;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @ContextConfiguration(classes = { HttpResponseHeaderFilter.class })
 class HttpResponseHeaderFilterTest extends DefaultTestConfig {
@@ -33,7 +31,6 @@ class HttpResponseHeaderFilterTest extends DefaultTestConfig {
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
     }
 
     @Test
@@ -46,5 +43,4 @@ class HttpResponseHeaderFilterTest extends DefaultTestConfig {
         assertDoesNotThrow(() -> httpResponseHeaderFilter.doFilter(request, response, filterChain));
         assertDoesNotThrow(() -> httpResponseHeaderFilter.destroy());
     }
-
 }
