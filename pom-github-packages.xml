@@ -18,23 +18,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-  
-   <dependencies>
-     <!--
-     <dependency>
-        <groupId>org.gunnarro.microservice</groupId>
-        <artifactId>spring-boot-microservice-archetype</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-     </dependency>
-     <dependency>
-        <groupId>org.gunnarro.microservice</groupId>
-        <artifactId>spring-boot-microservice-common-pom</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-     </dependency>
-     -->
-   </dependencies>
-  
-   <profiles>
+
+    <dependencies/>
+
+    <profiles>
         <profile>
             <!-- for deploy artifact to github packages -->
             <id>github</id>
@@ -46,8 +33,8 @@
                 </repository>
             </distributionManagement>
         </profile>
-       <profile>
-           <id>archetype</id>
-       </profile>
+        <profile>
+            <id>archetype</id>
+        </profile>
     </profiles>
 </project>
