@@ -3,6 +3,7 @@ package org.gunnarro.microservice.mymicroservice.endpoint;
 import org.gunnarro.microservice.mymicroservice.DefaultTestConfig;
 import org.gunnarro.microservice.mymicroservice.repository.impl.JdbcRepositoryImpl;
 import org.gunnarro.microservice.mymicroservice.service.impl.MyServiceImpl;
+import org.gunnarro.microservice.mymicroservice.domain.subscription.Subscription;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
