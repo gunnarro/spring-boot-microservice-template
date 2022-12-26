@@ -10,7 +10,7 @@
 	</parent>
 
 	<groupId>org.gunnarro.microservice</groupId>
-	<artifactId>spring-boot-microservice-template</artifactId>
+	<artifactId>my-microservice</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -229,9 +229,19 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-        		<groupId>org.junit.jupiter</groupId>
-        		<artifactId>junit-jupiter-engine</artifactId>
-        		<scope>test</scope>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
         	</dependency>
 	</dependencies>
 	

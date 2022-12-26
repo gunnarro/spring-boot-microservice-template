@@ -26,4 +26,18 @@ public class JdbcRepositoryImpl implements DbRepository {
             throw new ApplicationException(String.format("Failed getting subscription, subscriptionId=%s", subscriptionId), ex);
         }
     }
+
+    @Override
+    public Subscription createSubscription(Subscription subscription) {
+        return Subscription.builder().subscriptionId(subscription.getSubscriptionId()).build();
+    }
+
+    @Override
+    public Subscription updateSubscription(Subscription subscription) {
+        return Subscription.builder().subscriptionId(subscription.getSubscriptionId()).build();
+    }
+
+    @Override
+    public void deleteSubscription(Integer subscriptionId) {
+    }
 }

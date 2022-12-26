@@ -18,6 +18,6 @@ public class ErrorResponse {
     private String httpMessage;
     @ApiModelProperty(notes = "Internal error code", example = "4041001")
     private Integer errorCode;
-    @ApiModelProperty(notes = "Description of the error", example = "Сustomer not found")
+    @ApiModelProperty(notes = "Description of the error", example = "Customer not found")
     private String description;
 }

@@ -10,5 +10,11 @@ import org.gunnarro.microservice.mymicroservice.domain.subscription.Subscription
 @Repository
 public interface DbRepository {
     Subscription getSubscription(Integer subscriptionId);
+
+    Subscription createSubscription(Subscription subscription);
+
+    Subscription updateSubscription(Subscription subscription);
+
+    void deleteSubscription(Integer subscriptionId);
 }
 

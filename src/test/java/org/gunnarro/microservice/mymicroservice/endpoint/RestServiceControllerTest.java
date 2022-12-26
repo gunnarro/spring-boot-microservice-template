@@ -1,7 +1,6 @@
 package org.gunnarro.microservice.mymicroservice.endpoint;
 
 import org.gunnarro.microservice.mymicroservice.DefaultTestConfig;
-import org.gunnarro.microservice.mymicroservice.domain.subscription.Subscription;
 import org.gunnarro.microservice.mymicroservice.repository.impl.JdbcRepositoryImpl;
 import org.gunnarro.microservice.mymicroservice.service.impl.MyServiceImpl;
 import org.junit.jupiter.api.Assertions;
@@ -18,7 +17,7 @@ import static org.mockito.Mockito.when;
 /**
  * TODO Remove or Refactor. This class only serves as an example
  */
-@ContextConfiguration(classes = {MyServiceImpl.class, JdbcRepositoryImpl.class})
+@ContextConfiguration(classes = { MyServiceImpl.class, JdbcRepositoryImpl.class })
 class RestServiceControllerTest extends DefaultTestConfig {
     @Mock
     private MyServiceImpl myServiceMock;
@@ -48,7 +47,7 @@ class RestServiceControllerTest extends DefaultTestConfig {
         when(myServiceMock.saveSubscription(any())).thenReturn(subscription);
         ResponseEntity<Subscription> response = restServiceController.createSubscription(subscription);
         assertThat(response.getBody()).isNotNull();
-        Assertions.assertEquals(200, response.getStatusCode().value());
+        Assertions.assertEquals(201, response.getStatusCode().value());
         Assertions.assertEquals(23, response.getBody().getSubscriptionId());
     }
 

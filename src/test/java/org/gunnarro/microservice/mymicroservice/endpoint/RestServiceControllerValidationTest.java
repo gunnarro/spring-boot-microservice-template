@@ -9,13 +9,11 @@ import org.gunnarro.microservice.mymicroservice.service.impl.MyServiceImpl;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,10 +22,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-@Disabled
 @WebMvcTest
 @AutoConfigureMockMvc
-@ContextConfiguration(classes = {MyServiceImpl.class, DbRepository.class})
+@ContextConfiguration(classes = {RestServiceController.class, RestExceptionHandler.class})
 class RestServiceControllerValidationTest extends DefaultTestConfig {
 
     @Autowired
@@ -42,14 +39,16 @@ class RestServiceControllerValidationTest extends DefaultTestConfig {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Mock
+    @MockBean
     private MyServiceImpl myServiceMock;
+
+    @MockBean
+    DbRepository jdbcRepository;
 
     @Override
     @BeforeEach
     public void before() {
         super.before();
-        MockitoAnnotations.initMocks(this);
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context).build();
     }
 
@@ -59,22 +58,43 @@ class RestServiceControllerValidationTest extends DefaultTestConfig {
     }
 
     @Test
-    void updateSubscriptionValidateDataInputFailed() throws Exception {
+    void createSubscriptionInputValidationError() throws Exception {
         Subscription subscription = Subscription.builder()
                 .subscriptionId(12345678)
+                .customerId(23)
+                .name("mobile-#")
+                .type("data")
+                .password("mypass")
+                .build();
+        mockMvc.perform(MockMvcRequestBuilders.post("/restservice/v1/subscriptions")
+                        .content(objectMapper.writeValueAsString(subscription))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description", Is.is("Service Input Validation Error. name Can only contain lower and uppercase alphabetic chars.")))
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
+    void updateSubscriptionInputValidationError() throws Exception {
+        Subscription subscription = Subscription.builder()
+                .subscriptionId(12345678)
+                .customerId(23)
+                .name("mobiledata-{#}")
+                .type("")
+                .password("mypass")
                 .build();
         mockMvc.perform(MockMvcRequestBuilders.put("/restservice/v1/subscriptions/12345678")
-                .content(objectMapper.writeValueAsString(subscription))
-                .contentType(MediaType.APPLICATION_JSON))
+                        .content(objectMapper.writeValueAsString(subscription))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.httpMessage", Is.is("Bad Request, {billingType=billingType can not be null or empty}")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description", Is.is("Service Input Validation Error. name Can only contain lower and uppercase alphabetic chars., type Can only contain lower and uppercase alphabetic chars.")))
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
     }
 
     @Test
     void getSubscription() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/restservice/v1/subscriptions/12345678")
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
     }
 }

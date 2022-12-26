@@ -49,27 +49,27 @@ public class RestServiceController {
 
     @ApiOperation(value = "Get subscription", notes = "return subscription information", response = Subscription.class)
     @GetMapping(path = "/subscriptions/{subscriptionId}")
-    public ResponseEntity<Subscription> getSubscription(@PathVariable @NotBlank Integer subscriptionId) {
+    public ResponseEntity<Subscription> getSubscription(@PathVariable @NotNull Integer subscriptionId) {
         return ResponseEntity.ok(myService.getSubscription(subscriptionId));
     }
 
     @ApiOperation(value = "Create subscription", notes = "Create new subscription", response = Subscription.class)
-    @PostMapping(path = "/subscriptions/")
+    @PostMapping(path = "/subscriptions")
     public ResponseEntity<Subscription> createSubscription(@RequestBody @Valid Subscription subscription) {
         log.info("create: {} ", subscription);
-        return ResponseEntity.ok(myService.saveSubscription(subscription));
+        return ResponseEntity.status(HttpStatus.CREATED).body(myService.saveSubscription(subscription));
     }
 
     @ApiOperation(value = "Update subscription", notes = "Update subscription", response = Subscription.class)
     @PutMapping(path = "/subscriptions/{subscriptionId}")
-    public ResponseEntity<Subscription> updateSubscription(@PathVariable @NotBlank Integer subscriptionId, @RequestBody @Valid Subscription subscription) {
+    public ResponseEntity<Subscription> updateSubscription(@PathVariable @NotNull Integer subscriptionId, @RequestBody @Valid Subscription subscription) {
         log.info("update: {} ", subscriptionId);
         return ResponseEntity.ok(myService.saveSubscription(subscription));
     }
 
     @ApiOperation(value = "Delete subscription", notes = "delete subscription with subscriptionId", response = ResponseEntity.class)
     @DeleteMapping(path = "/subscriptions/{subscriptionId}")
-    public ResponseEntity<Integer> deleteSubscription(@PathVariable @NotBlank Integer subscriptionId) {
+    public ResponseEntity<Integer> deleteSubscription(@PathVariable @NotNull Integer subscriptionId) {
         log.info("delete: {} ", subscriptionId);
         myService.deleteSubscription(subscriptionId);
         return ResponseEntity.ok(subscriptionId);
