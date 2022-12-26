@@ -5,6 +5,7 @@ import org.gunnarro.microservice.mymicroservice.DefaultTestConfig;
 import org.gunnarro.microservice.mymicroservice.domain.subscription.Subscription;
 import org.gunnarro.microservice.mymicroservice.repository.DbRepository;
 import org.gunnarro.microservice.mymicroservice.service.impl.MyServiceImpl;
+import org.gunnarro.microservice.mymicroservice.handler.RestExceptionHandler;
 
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.Assertions;
