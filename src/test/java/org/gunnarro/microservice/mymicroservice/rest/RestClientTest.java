@@ -7,7 +7,6 @@ import org.gunnarro.microservice.mymicroservice.rest.RestClient.CollectionFormat
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -19,7 +18,6 @@ import java.util.Objects;
 class RestClientTest extends DefaultTestConfig {
     @BeforeEach
     public void init() {
-        MockitoAnnotations.initMocks(this);
     }
 
     @Test
