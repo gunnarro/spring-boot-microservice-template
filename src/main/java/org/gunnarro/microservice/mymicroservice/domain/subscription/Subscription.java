@@ -17,7 +17,7 @@ import javax.validation.constraints.Pattern;
  */
 @ApiModel(description = "Holds information about a subscription for a customer")
 @JsonIgnoreProperties(ignoreUnknown = true)
-NoArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
