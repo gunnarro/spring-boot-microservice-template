@@ -1,40 +1,35 @@
 package org.gunnarro.microservice.mymicroservice.endpoint;
 
-import java.nio.charset.Charset;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.actuate.metrics.AutoConfigureMetrics;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.Serial;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+
 /**
  *
  */
+@Disabled("must fix property encryption")
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@TestPropertySource(locations = "/test-application.properties")
+@TestPropertySource(locations = "file:src/test/resources/test-application.properties")
 @AutoConfigureMetrics
 class RestServiceControllerIT {
 
@@ -50,7 +45,7 @@ class RestServiceControllerIT {
     private String password;
 
     @BeforeEach
-    public void init() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
+    public void init() {
         // NoopHostnameVerifier essentially turns hostname verification off
         CloseableHttpClient httpClient = HttpClientBuilder.create().setSSLHostnameVerifier(new NoopHostnameVerifier()).build();
         HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
@@ -59,7 +54,7 @@ class RestServiceControllerIT {
         testRestTemplate.getMessageConverters().add(new StringHttpMessageConverter());
         requestHeaders = createHeaders(username, password);
         requestHeaders.setContentType(MediaType.APPLICATION_JSON);
-        requestHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON_UTF8));
+        requestHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
     }
 
     @Test
@@ -82,7 +77,7 @@ class RestServiceControllerIT {
         ResponseEntity<Object> response = testRestTemplate.exchange(createURLWithPort("http","actuator"), HttpMethod.GET, null, Object.class);
         Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
     }
-    
+
     @Test
     void prometheusIsAlive() {
         port = 9998;
@@ -96,14 +91,14 @@ class RestServiceControllerIT {
 
     private HttpHeaders createHeaders(String username, String password) {
         return new HttpHeaders() {
+            @Serial
             private static final long serialVersionUID = 1L;
             {
                 String auth = username + ":" + password;
-                byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("UTF8")));
+                byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(StandardCharsets.UTF_8));
                 String authHeader = "Basic " + new String(encodedAuth);
                 set("Authorization", authHeader);
             }
         };
     }
-
 }
