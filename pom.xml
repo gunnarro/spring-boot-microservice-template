@@ -145,6 +145,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>${mariadb.version}</version>
+		</dependency>
 		<!-- Micrometer Prometheus registry for monitoring purpose -->
 		<dependency>
 			<groupId>io.micrometer</groupId>
@@ -184,20 +189,8 @@
 		<!-- Test dependencies -->
 		<!-- ================= -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
 			<groupId>ch.vorburger.mariaDB4j</groupId>
 			<artifactId>mariaDB4j-springboot</artifactId>
-			<version>${mariadb.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mariadb.jdbc</groupId>
-			<artifactId>mariadb-java-client</artifactId>
 			<version>${mariadb.version}</version>
 			<scope>test</scope>
 		</dependency>
