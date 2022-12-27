@@ -1,7 +1,5 @@
 package org.gunnarro.microservice.mymicroservice;
 
-{groupId}.mymicroservice;
-
 import org.gunnarro.microservice.mymicroservice.exception.ApplicationException;
 
 import java.util.Arrays;
