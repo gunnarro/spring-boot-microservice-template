@@ -21,14 +21,14 @@ public class SecurityConfig {
      * CORS enables cross-domain communication, is turned off as default.
      * If needed, activate cors on controller or method level with @CrossOrigin annotaion.
      * Do not turn if off here, at global level.
-     *
-     * CSRF ensure that is is safe before disabled. see https://www.baeldung.com/csrf-stateless-rest-api,
-     *
+     * <p>
+     * CSRF ensure that it is safe before disabled. see <a href="https://www.baeldung.com/csrf-stateless-rest-api">csrf-stateless-rest-api</a>
+     * <p>
      * Both CORS and CSRF are activated as default bt Spring Security 4.x and higher.
      */
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(authz -> authz
+        http.authorizeHttpRequests(auth -> auth
                         .antMatchers("/api-docs", "/swagger-resources/**", "/swagger-ui.html", "/webjars/**", "/actuator/**")
                         .permitAll()
                         .anyRequest().authenticated()

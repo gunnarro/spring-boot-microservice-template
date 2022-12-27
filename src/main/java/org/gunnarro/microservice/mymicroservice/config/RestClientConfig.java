@@ -25,16 +25,12 @@ import org.gunnarro.microservice.mymicroservice.rest.RestClient;
 
 /**
  * TODO remove me if not used!
- * 
- * 
+ * <p>
  * NOTE! client property names must be changed, all client.* properties must be
  * changed, the serves only as example
- * 
+ * <p>
  * Generic configuration for rest templates for against external systems
  * This configuration serves only as a default setup.
- * 
- * @author gunnar
- *
  */
 @Configuration
 @Slf4j

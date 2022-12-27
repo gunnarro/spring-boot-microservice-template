@@ -10,8 +10,8 @@ import org.springframework.util.ObjectUtils;
  * Check and throw an exception if required application properties are missing
  * during application startup. For example, you are not allowed to run an
  * application without ssl enabled
- *
- * Note! Some system environment varaibles must be set on local PC
+ * <p>
+ * Note! Some system environment variables must be set on local PC
  */
 @Configuration
 @Slf4j

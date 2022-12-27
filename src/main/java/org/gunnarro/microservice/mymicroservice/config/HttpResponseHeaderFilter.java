@@ -17,7 +17,9 @@ import org.apache.logging.log4j.ThreadContext;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Filter for setting common HTTP Headers for all rest responses
+ * Filter for setting common HTTP Headers for all rest responses.
+ * Add a UUID to both request and response http header.
+ * If a request already have a UUID reques theader, that is kept.
  * 
  */
 @Slf4j
@@ -39,8 +41,7 @@ public class HttpResponseHeaderFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         // Read the uuid from incoming request and use that if exist, if nor
         // generate and use a new uuid
-        String uuid = Optional.ofNullable(httpServletRequest.getHeader(HTTP_HEADER_UUID))
-                .orElse(UUID.randomUUID().toString());
+        String uuid = Optional.ofNullable(httpServletRequest.getHeader(HTTP_HEADER_UUID)).orElse(UUID.randomUUID().toString());
         ThreadContext.put(HTTP_HEADER_UUID, uuid);
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
         httpServletResponse.setHeader(HTTP_HEADER_UUID, uuid);

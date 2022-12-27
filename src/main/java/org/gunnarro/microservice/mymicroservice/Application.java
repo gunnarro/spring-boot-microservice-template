@@ -1,9 +1,10 @@
-package org.gunnarro.microservice.mymicroservice;
+package $
+
+{groupId}.mymicroservice;
 
 import org.gunnarro.microservice.mymicroservice.exception.ApplicationException;
 
 import java.util.Arrays;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -18,17 +19,16 @@ import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties
 
 /**
  * Application start point.
- * 
- * run from cmd line: mvn spring-boot:run
- * -Dspring-boot.run.arguments=--spring.profiles.active=vktest,--logging.config=config/log4j2.xml
- * or 
- * java -Dspring.profiles.active=vktest -Dlogging.config=config/log4j2.xml -jar target/spring-application.jar
- * 
+ * <p>
+ * run from cmd line:
+ * mvn spring-boot:run -Dspring-boot.run.arguments=--spring.profiles.active=sitest,--logging.config=config/log4j2.xml
+ * or
+ * java -Dspring.profiles.active=sitest -Dlogging.config=config/log4j2.xml -jar target/spring-application.jar
+ * <p>
  * Monitoring: localhost:port/health localhost:port/info localhost:port/metrics
  * localhost:port/trace
- * 
+ * <p>
  * Swagger url: https://localhost:port/api-docs/swagger-ui.html
- * 
  */
 @SpringBootApplication
 @EnableEncryptableProperties
@@ -41,7 +41,7 @@ public class Application {
         if (args != null && args.length > 0) {
             throw new ApplicationException(String.format("Error during startup. Do not use use java arguments! arguments=%s", Arrays.toString(args)));
         }
-        
+
         ConfigurableApplicationContext ctx = null;
         try {
             SpringApplication springApplication = new SpringApplication(Application.class);

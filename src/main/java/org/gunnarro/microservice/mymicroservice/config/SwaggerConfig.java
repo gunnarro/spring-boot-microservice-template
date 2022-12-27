@@ -17,11 +17,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * TODO Updated service rest uri(s)!
- * 
  * Swagger url:
- * 
- * https://localhost:port/api-docs/swagger-ui.html
- * 
+ * <a href="https://localhost:port/api-docs/swagger-ui.html">https://localhost:port/api-docs/swagger-ui.html</a>
  */
 @Configuration
 @EnableSwagger2
