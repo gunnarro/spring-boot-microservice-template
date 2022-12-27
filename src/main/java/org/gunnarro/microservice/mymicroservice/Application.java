@@ -19,16 +19,16 @@ import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties
 
 /**
  * Application start point.
- * <p>
  * run from cmd line:
- * mvn spring-boot:run -Dspring-boot.run.arguments=--spring.profiles.active=sitest,--logging.config=config/log4j2.xml
+ * mvn spring-boot:run -Dspring-boot.run.arguments=--spring.profiles.active=vktest,--logging.config=config/log4j2-spring.xml
  * or
- * java -Dspring.profiles.active=sitest -Dlogging.config=config/log4j2.xml -jar target/spring-application.jar
+ * java -Dspring.profiles.active=vktest -Dlogging.config=config/log4j2-spring.xml -jar target/spring-application.jar
  * <p>
- * Monitoring: localhost:port/health localhost:port/info localhost:port/metrics
- * localhost:port/trace
+ * Monitoring:
+ * <a href="http://localhost:9998/actuator/prometheus">http://localhost:9998/actuator/prometheus</a>
  * <p>
- * Swagger url: https://localhost:port/api-docs/swagger-ui.html
+ * Swagger url:
+ * <a href="https://localhost:9999/swagger-ui/index.html">https://localhost:9999/swagger-ui/index.html</a>
  */
 @SpringBootApplication
 @EnableEncryptableProperties
