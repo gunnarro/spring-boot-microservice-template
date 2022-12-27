@@ -1,4 +1,4 @@
-package $
+package org.gunnarro.microservice.mymicroservice;
 
 {groupId}.mymicroservice;
 
