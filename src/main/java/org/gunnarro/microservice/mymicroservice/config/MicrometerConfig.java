@@ -1,5 +1,6 @@
 package org.gunnarro.microservice.mymicroservice.config;
 
+import io.micrometer.core.aop.TimedAspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
 import org.springframework.boot.info.BuildProperties;
@@ -22,5 +23,14 @@ public class MicrometerConfig {
                     String uri = id.getTag("uri");
                     return uri != null && uri.startsWith("/swagger");
                 }));
+    }
+
+    /**
+     * Applying TimedAspect makes @Timed usable on any arbitrary method in an
+     * AspectJ proxied instance.
+     */
+    @Bean
+    public TimedAspect timedAspect(MeterRegistry registry) {
+        return new TimedAspect(registry);
     }
 }
