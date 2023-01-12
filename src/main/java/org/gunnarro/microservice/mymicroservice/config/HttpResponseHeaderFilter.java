@@ -41,10 +41,10 @@ public class HttpResponseHeaderFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         // Read the uuid from incoming request and use that if exist, if nor
         // generate and use a new uuid
-        String uuid = Optional.ofNullable(httpServletRequest.getHeader(HTTP_HEADER_UUID)).orElse(UUID.randomUUID().toString());
-        ThreadContext.put(HTTP_HEADER_UUID, uuid);
+        String validUuid = validateUuid(httpServletRequest.getHeader(HTTP_HEADER_UUID));
+        ThreadContext.put(HTTP_HEADER_UUID, validUuid);
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-        httpServletResponse.setHeader(HTTP_HEADER_UUID, uuid);
+        httpServletResponse.setHeader(HTTP_HEADER_UUID, validUuid);
         chain.doFilter(request, response);
     }
 
@@ -52,4 +52,13 @@ public class HttpResponseHeaderFilter implements Filter {
     public void init(FilterConfig arg0) {
         log.debug("init");
     }
+
+    private String validateUuid(String uuid) {
+      try {
+        return UUID.fromString(uuid).toString();
+      } catch (IllegalArgumentException e) {
+        // this eas an invalid uuid, simply ignore and generate a new uuid.
+      }
+      return UUID.randomUUID().toString();
+     }
 }
