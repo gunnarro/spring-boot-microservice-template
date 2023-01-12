@@ -55,7 +55,9 @@ public class HttpResponseHeaderFilter implements Filter {
 
     private String validateUuid(String uuid) {
       try {
-        return UUID.fromString(uuid).toString();
+        if (uuid != null) {
+           return UUID.fromString(uuid).toString();
+        }
       } catch (IllegalArgumentException e) {
         // this eas an invalid uuid, simply ignore and generate a new uuid.
       }
