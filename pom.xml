@@ -25,8 +25,8 @@
 	<!-- A good rule of thumb is, if the person should not be contacted about the project, they need not be listed here. -->
 	<developers>
 		<developer>
-			<name></name>
-			<email></email>
+			<name/>
+			<email/>
 			<organization>gunnarro as</organization>
 			<roles>
 				<role>maintainer</role>
@@ -38,7 +38,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<mariadb.version>2.5.3</mariadb.version>
+		<mariadb.version>2.7.7</mariadb.version>
 	</properties>
 
 	<!-- Run integration test only: -->
