@@ -25,8 +25,8 @@
 	<!-- A good rule of thumb is, if the person should not be contacted about the project, they need not be listed here. -->
 	<developers>
 		<developer>
-			<name></name>
-			<email></email>
+			<name>gunnarro</name>
+			<email>gr@gunnarro.org</email>
 			<organization>gunnarro as</organization>
 			<roles>
 				<role>maintainer</role>
