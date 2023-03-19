@@ -19,7 +19,7 @@ public class SecurityConfig {
 
     /**
      * CORS enables cross-domain communication, is turned off as default.
-     * If needed, activate cors on controller or method level with @CrossOrigin annotaion.
+     * If needed, activate cors on controller or method level with @CrossOrigin annotation.
      * Do not turn if off here, at global level.
      * <p>
      * CSRF ensure that it is safe before disabled. see <a href="https://www.baeldung.com/csrf-stateless-rest-api">csrf-stateless-rest-api</a>
