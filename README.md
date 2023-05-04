@@ -23,9 +23,9 @@ static {
 ```
 
  * ```mvn clean install```
- * ```mvn spring-boot:run -Dspring-boot.run.arguments=--spring.profiles.active=vktest,--spring.config.location=file:config/*```
+ * ```mvn spring-boot:run -Dspring-boot.run.arguments=--spring.profiles.active=sit,--spring.config.location=file:config/*```
  *  or 
- * ```java -jar -Dspring.profiles.active=vktest -Dspring.config.location=file:config/ target/mymicroservice.jar```
+ * ```java -jar -Dspring.profiles.active=sit -Dspring.config.location=file:config/ target/mymicroservice.jar```
  
    
 [rest service api](https://localhost:xxxx/api-docs/swagger-ui.html)
