@@ -34,7 +34,7 @@ public class RequestLoggingConfig {
 
     /**
      * For performance logging.
-     * Must add nimbus.enterprise.provision.aspect logger to log configuration
+     * Must add org.gunnarro.microservice.mymicroservice.aspect logger to log configuration
      */
     @Bean
     public CustomizableTraceInterceptor customizableTraceInterceptor() {
