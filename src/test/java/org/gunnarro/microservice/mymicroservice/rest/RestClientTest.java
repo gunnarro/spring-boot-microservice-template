@@ -75,15 +75,15 @@ class RestClientTest extends DefaultTestConfig {
         Map<String, String> queryParams = new HashMap<>();
         queryParams.put(RestClient.URL_PARAM_SORT_BY, "name");
 
-        Assertions.assertEquals("http://cdk.no/accounts", RestClient.buildUri("http://cdk.no", "/accounts", null, null).toString());
-        Assertions.assertEquals("http://cdk.no/accounts?sortBy=name", RestClient.buildUri("http://cdk.no", "/accounts", null, queryParams).toString());
+        Assertions.assertEquals("http://gunnarro.no/accounts", RestClient.buildUri("http://gunnarro.no", "/accounts", null, null).toString());
+        Assertions.assertEquals("http://gunnarro.no/accounts?sortBy=name", RestClient.buildUri("http://gunnarro.no", "/accounts", null, queryParams).toString());
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("accountId", "12345678");
         uriVariables.put("profileId", "11");
-        Assertions.assertEquals("http://cdk.no/accounts/12345678/profile/11",
-                RestClient.buildUri("http://cdk.no", "/accounts/{accountId}/profile/{profileId}", uriVariables, null).toString());
-        Assertions.assertEquals("http://cdk.no/accounts/12345678/properties?sortBy=name",
-                RestClient.buildUri("http://cdk.no", "/accounts/{accountId}/properties", uriVariables, queryParams).toString());
+        Assertions.assertEquals("http://gunnarro.no/accounts/12345678/profile/11",
+                RestClient.buildUri("http://gunnarro.no", "/accounts/{accountId}/profile/{profileId}", uriVariables, null).toString());
+        Assertions.assertEquals("http://gunnarro.no/accounts/12345678/properties?sortBy=name",
+                RestClient.buildUri("http://gunnarro.no", "/accounts/{accountId}/properties", uriVariables, queryParams).toString());
 
         String path = UriComponentsBuilder.fromPath("/accounts/{accountId}/profile/{profileId}").queryParam("sortBy", "accountId").buildAndExpand(uriVariables)
                 .toUriString();
