@@ -21,7 +21,7 @@ import org.springframework.web.client.HttpClientErrorException;
 @Component
 @Slf4j
 public class MethodProfilerAspect {
-    /**Log
+    /**
      * 
      * @param proceedingJoinPoint
      * @return
