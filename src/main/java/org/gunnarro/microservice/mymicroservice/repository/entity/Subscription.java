@@ -1,4 +1,4 @@
-package org.gunnarro.microservice.mymicroservice..repository.entity;
+package org.gunnarro.microservice.mymicroservice.repository.entity;
 
 import lombok.*;
 
