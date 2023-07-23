@@ -21,45 +21,22 @@ import org.springframework.web.client.HttpClientErrorException;
 @Component
 @Slf4j
 public class MethodProfilerAspect {
-    /**
-     * 
-     * @param proceedingJoinPoint
-     * @return
-     * @throws Throwable
-     */
+
     @Around("execution(* org.gunnarro.microservice.mymicroservice.adapter.impl.*.*(..))")
     public Object profileAdapters(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         return profileMethodeCall(proceedingJoinPoint);
     }
 
-    /**
-     * 
-     * @param proceedingJoinPoint
-     * @return
-     * @throws Throwable
-     */
     @Around("execution(* org.gunnarro.microservice.mymicroservice.rest.RestClient.*(..))")
     public Object profileRestClient(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         return profileMethodeCall(proceedingJoinPoint);
     }
 
-    /**
-     * 
-     * @param proceedingJoinPoint
-     * @return
-     * @throws Throwable
-     */
     @Around("execution(* org.gunnarro.microservice.mymicroservice.service.impl.*.*(..))")
     public Object profileServices(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         return profileMethodeCall(proceedingJoinPoint);
     }
 
-    /**
-     * 
-     * @param proceedingJoinPoint
-     * @return
-     * @throws Throwable
-     */
     @Around("execution(* org.gunnarro.microservice.mymicroservice.endpoint.*.*(..))")
     public Object profileEndpoint(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         return profileMethodeCall(proceedingJoinPoint);
