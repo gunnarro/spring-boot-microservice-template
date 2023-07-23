@@ -1,4 +1,4 @@
-package org.gunnarro.microservice.mymicroservice.repository.impl;
+package org.gunnarro.microservice.mymicroservice.repository;
 
 
 import org.gunnarro.microservice.mymicroservice.repository.entity.Customer;
