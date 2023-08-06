@@ -2,7 +2,7 @@ package org.gunnarro.microservice.mymicroservice.endpoint;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.gunnarro.microservice.mymicroservice.DefaultTestConfig;
-import org.gunnarro.microservice.mymicroservice.domain.subscription.Subscription;
+import org.gunnarro.microservice.mymicroservice.domain.dto.subscription.SubscriptionDto;
 import org.gunnarro.microservice.mymicroservice.repository.DbRepository;
 import org.gunnarro.microservice.mymicroservice.service.impl.MyServiceImpl;
 import org.gunnarro.microservice.mymicroservice.handler.RestExceptionHandler;
@@ -61,9 +61,9 @@ class RestServiceControllerValidationTest extends DefaultTestConfig {
 
     @Test
     void createSubscriptionInputValidationError() throws Exception {
-        Subscription subscription = Subscription.builder()
-                .subscriptionId(12345678)
-                .customerId(23)
+        SubscriptionDto subscription = SubscriptionDto.builder()
+                .subscriptionId(12345678L)
+                .customerId(23L)
                 .name("mobile-#")
                 .type("data")
                 .password("mypasssomskalverover")
@@ -79,9 +79,9 @@ class RestServiceControllerValidationTest extends DefaultTestConfig {
     @Disabled("fix error message order, is not equal between test runs")
     @Test
     void updateSubscriptionInputValidationError() throws Exception {
-        Subscription subscription = Subscription.builder()
-                .subscriptionId(12345678)
-                .customerId(23)
+        SubscriptionDto subscription = SubscriptionDto.builder()
+                .subscriptionId(12345678L)
+                .customerId(23L)
                 .name("mobiledata-{#}")
                 .type("")
                 .password("mypass")

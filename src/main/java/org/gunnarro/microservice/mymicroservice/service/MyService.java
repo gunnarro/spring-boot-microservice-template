@@ -1,6 +1,6 @@
 package org.gunnarro.microservice.mymicroservice.service;
 
-import org.gunnarro.microservice.mymicroservice.domain.subscription.Subscription;
+import org.gunnarro.microservice.mymicroservice.domain.dto.subscription.SubscriptionDto;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface MyService {
-    Subscription getSubscription(Integer subscriptionId);
+    SubscriptionDto getSubscription(Integer subscriptionId);
 
-    Subscription saveSubscription(Subscription subscription);
+    SubscriptionDto saveSubscription(SubscriptionDto subscription);
 
     void deleteSubscription(Integer subscriptionId);
 }

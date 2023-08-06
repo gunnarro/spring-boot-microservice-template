@@ -1,7 +1,7 @@
 package org.gunnarro.microservice.mymicroservice.service;
 
 import org.gunnarro.microservice.mymicroservice.DefaultTestConfig;
-import org.gunnarro.microservice.mymicroservice.domain.subscription.Subscription;
+import org.gunnarro.microservice.mymicroservice.repository.entity.Subscription;
 import org.gunnarro.microservice.mymicroservice.exception.NotFoundException;
 import org.gunnarro.microservice.mymicroservice.repository.DbRepository;
 import org.gunnarro.microservice.mymicroservice.repository.impl.JdbcRepositoryImpl;
@@ -25,7 +25,7 @@ class MyServiceTest extends DefaultTestConfig {
 
     @Test
     void getSubscription() {
-        Mockito.when(dbRepositoryMock.getSubscription(12345678)).thenReturn(Subscription.builder().customerId(121212).build());
+        Mockito.when(dbRepositoryMock.getSubscription(12345678)).thenReturn(Subscription.builder().build());
         Assertions.assertNotNull(service.getSubscription(12345678));
     }
 

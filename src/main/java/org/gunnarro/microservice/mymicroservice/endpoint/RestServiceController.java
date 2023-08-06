@@ -1,7 +1,7 @@
 package org.gunnarro.microservice.mymicroservice.endpoint;
 
-import org.gunnarro.microservice.mymicroservice.domain.ErrorResponse;
-import org.gunnarro.microservice.mymicroservice.domain.subscription.Subscription;
+import org.gunnarro.microservice.mymicroservice.domain.dto.ErrorResponse;
+import org.gunnarro.microservice.mymicroservice.domain.dto.subscription.SubscriptionDto;
 import org.gunnarro.microservice.mymicroservice.service.MyService;
 import io.micrometer.core.annotation.Timed;
 import io.swagger.v3.oas.annotations.Operation;
@@ -57,10 +57,10 @@ public class RestServiceController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the subscription",
                     content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Subscription.class))})
+                            schema = @Schema(implementation = SubscriptionDto.class))})
     })
     @GetMapping(path = "/subscriptions/{subscriptionId}")
-    public ResponseEntity<Subscription> getSubscription(@PathVariable @NotNull Integer subscriptionId) {
+    public ResponseEntity<SubscriptionDto> getSubscription(@PathVariable @NotNull Integer subscriptionId) {
         return ResponseEntity.ok(myService.getSubscription(subscriptionId));
     }
 
@@ -69,10 +69,10 @@ public class RestServiceController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Created the subscription",
                     content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Subscription.class))})
+                            schema = @Schema(implementation = SubscriptionDto.class))})
     })
     @PostMapping(path = "/subscriptions")
-    public ResponseEntity<Subscription> createSubscription(@RequestBody @Valid Subscription subscription) {
+    public ResponseEntity<SubscriptionDto> createSubscription(@RequestBody @Valid SubscriptionDto subscription) {
         log.info("create: {} ", subscription);
         return ResponseEntity.status(HttpStatus.CREATED).body(myService.saveSubscription(subscription));
     }
@@ -82,10 +82,10 @@ public class RestServiceController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Updated the subscription",
                     content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Subscription.class))})
+                            schema = @Schema(implementation = SubscriptionDto.class))})
     })
     @PutMapping(path = "/subscriptions/{subscriptionId}")
-    public ResponseEntity<Subscription> updateSubscription(@PathVariable @NotNull Integer subscriptionId, @RequestBody @Valid Subscription subscription) {
+    public ResponseEntity<SubscriptionDto> updateSubscription(@PathVariable @NotNull Integer subscriptionId, @RequestBody @Valid SubscriptionDto subscription) {
         log.info("update: {} ", subscriptionId);
         return ResponseEntity.ok(myService.saveSubscription(subscription));
     }
@@ -95,7 +95,7 @@ public class RestServiceController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Deleted the subscription",
                     content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Subscription.class))})
+                            schema = @Schema(implementation = SubscriptionDto.class))})
     })
     @DeleteMapping(path = "/subscriptions/{subscriptionId}")
     public ResponseEntity<Integer> deleteSubscription(@PathVariable @NotNull Integer subscriptionId) {

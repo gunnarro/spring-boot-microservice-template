@@ -3,7 +3,7 @@ package org.gunnarro.microservice.mymicroservice.repository.impl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
-import org.gunnarro.microservice.mymicroservice.domain.subscription.Subscription;
+import org.gunnarro.microservice.mymicroservice.repository.entity.Subscription;
 import org.gunnarro.microservice.mymicroservice.exception.ApplicationException;
 import org.gunnarro.microservice.mymicroservice.repository.DbRepository;
 
@@ -27,16 +27,25 @@ public class JdbcRepositoryImpl implements DbRepository {
         }
     }
 
+    /**
+     * TODO implement me
+     */
     @Override
     public Subscription createSubscription(Subscription subscription) {
-        return Subscription.builder().subscriptionId(subscription.getSubscriptionId()).build();
+        return Subscription.builder().id(subscription.getId()).build();
     }
 
+    /**
+     * TODO implement me
+     */
     @Override
     public Subscription updateSubscription(Subscription subscription) {
-        return Subscription.builder().subscriptionId(subscription.getSubscriptionId()).build();
+        return Subscription.builder().id(subscription.getId()).build();
     }
 
+    /**
+     * TODO implement me
+     */
     @Override
     public void deleteSubscription(Integer subscriptionId) {
     }

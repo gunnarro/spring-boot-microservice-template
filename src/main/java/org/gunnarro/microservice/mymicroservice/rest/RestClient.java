@@ -25,7 +25,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import org.gunnarro.microservice.mymicroservice.domain.Parameter;
+import org.gunnarro.microservice.mymicroservice.domain.dto.Parameter;
 import org.gunnarro.microservice.mymicroservice.exception.ApplicationException;
 import org.gunnarro.microservice.mymicroservice.exception.RestClientApiException;
 

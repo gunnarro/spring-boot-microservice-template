@@ -4,9 +4,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import org.gunnarro.microservice.mymicroservice.exception.NotFoundException;
-import org.gunnarro.microservice.mymicroservice.domain.subscription.Subscription;
+import org.gunnarro.microservice.mymicroservice.domain.dto.subscription.SubscriptionDto;
+import org.gunnarro.microservice.mymicroservice.domain.mapper.SubscriptionMapper;
 import org.gunnarro.microservice.mymicroservice.service.MyService;
 import org.gunnarro.microservice.mymicroservice.repository.DbRepository;
+import org.gunnarro.microservice.mymicroservice.repository.entity.Subscription;
 
 /**
  * TODO Remove or Refactor. This class only serves as an example
@@ -24,20 +26,20 @@ public class MyServiceImpl implements MyService {
      * {@inheritDoc}
      */
     @Override
-    public Subscription getSubscription(Integer subscriptionId) {
+    public SubscriptionDto getSubscription(Integer subscriptionId) {
         Subscription subscription = dbRepository.getSubscription(subscriptionId);
         log.debug("returned {}", subscription);
         if (subscription == null) {
             throw new NotFoundException(String.format("subscription not found, subscriptionId=%s", subscriptionId));
         }
-        return subscription;
+        return SubscriptionMapper.toSubscriptionDto(subscription);
     }
 
     /*
      * {@inheritDoc}
      */
      @Override
-     public Subscription saveSubscription(Subscription subscription) {
+     public SubscriptionDto saveSubscription(SubscriptionDto subscription) {
          log.debug("save {}", subscription);
          return null;
      }

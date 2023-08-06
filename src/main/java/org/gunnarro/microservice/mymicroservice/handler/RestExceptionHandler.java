@@ -1,7 +1,7 @@
 package org.gunnarro.microservice.mymicroservice.handler;
 
-import org.gunnarro.microservice.mymicroservice.domain.ErrorResponse;
-import org.gunnarro.microservice.mymicroservice.domain.MicroserviceStatus;
+import org.gunnarro.microservice.mymicroservice.domain.dto.ErrorResponse;
+import org.gunnarro.microservice.mymicroservice.domain.dto.MicroserviceStatus;
 import org.gunnarro.microservice.mymicroservice.exception.ApplicationException;
 import org.gunnarro.microservice.mymicroservice.exception.NotFoundException;
 import org.gunnarro.microservice.mymicroservice.exception.RestClientApiException;

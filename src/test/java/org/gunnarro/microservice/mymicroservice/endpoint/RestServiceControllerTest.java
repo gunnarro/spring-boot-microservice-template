@@ -3,7 +3,7 @@ package org.gunnarro.microservice.mymicroservice.endpoint;
 import org.gunnarro.microservice.mymicroservice.DefaultTestConfig;
 import org.gunnarro.microservice.mymicroservice.repository.impl.JdbcRepositoryImpl;
 import org.gunnarro.microservice.mymicroservice.service.impl.MyServiceImpl;
-import org.gunnarro.microservice.mymicroservice.domain.subscription.Subscription;
+import org.gunnarro.microservice.mymicroservice.domain.dto.subscription.SubscriptionDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -34,9 +34,9 @@ class RestServiceControllerTest extends DefaultTestConfig {
 
     @Test
     void getSubscription() {
-        Subscription subscription = Subscription.builder().subscriptionId(23).customerId(123).name("test").password("test-pass").build();
+        SubscriptionDto subscription = SubscriptionDto.builder().subscriptionId(23L).customerId(123L).name("test").password("test-pass").build();
         when(myServiceMock.getSubscription(23)).thenReturn(subscription);
-        ResponseEntity<Subscription> response = restServiceController.getSubscription(23);
+        ResponseEntity<SubscriptionDto> response = restServiceController.getSubscription(23);
         assertThat(response.getBody()).isNotNull();
         Assertions.assertEquals(200, response.getStatusCode().value());
         Assertions.assertEquals(23, response.getBody().getSubscriptionId());
@@ -44,9 +44,9 @@ class RestServiceControllerTest extends DefaultTestConfig {
 
     @Test
     void createSubscription() {
-        Subscription subscription = Subscription.builder().subscriptionId(23).customerId(123).name("test").password("test-pass").build();
+        SubscriptionDto subscription = SubscriptionDto.builder().subscriptionId(23L).customerId(123L).name("test").password("test-pass").build();
         when(myServiceMock.saveSubscription(any())).thenReturn(subscription);
-        ResponseEntity<Subscription> response = restServiceController.createSubscription(subscription);
+        ResponseEntity<SubscriptionDto> response = restServiceController.createSubscription(subscription);
         assertThat(response.getBody()).isNotNull();
         Assertions.assertEquals(201, response.getStatusCode().value());
         Assertions.assertEquals(23, response.getBody().getSubscriptionId());
@@ -54,9 +54,9 @@ class RestServiceControllerTest extends DefaultTestConfig {
 
     @Test
     void updateSubscription() {
-        Subscription subscription = Subscription.builder().subscriptionId(23).customerId(123).name("test").password("test-pass").build();
+        SubscriptionDto subscription = SubscriptionDto.builder().subscriptionId(23L).customerId(123L).name("test").password("test-pass").build();
         when(myServiceMock.saveSubscription(any())).thenReturn(subscription);
-        ResponseEntity<Subscription> response = restServiceController.updateSubscription(subscription.getSubscriptionId(), subscription);
+        ResponseEntity<SubscriptionDto> response = restServiceController.updateSubscription(subscription.getSubscriptionId().intValue(), subscription);
         assertThat(response.getBody()).isNotNull();
         Assertions.assertEquals(200, response.getStatusCode().value());
         Assertions.assertEquals(23, response.getBody().getSubscriptionId());

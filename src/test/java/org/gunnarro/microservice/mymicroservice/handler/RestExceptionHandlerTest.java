@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.client.HttpClientErrorException;
 
-import  org.gunnarro.microservice.mymicroservice.domain.ErrorResponse;
-import  org.gunnarro.microservice.mymicroservice.exception.ApplicationException;
+import  org.gunnarro.microservice.mymicroservice.domain.dto.ErrorResponse;
+import  org.gunnarro.microservice.mymicroservice.exception.ApplicationException;   
 import  org.gunnarro.microservice.mymicroservice.exception.RestInputValidationException;
 
 class RestExceptionHandlerTest {

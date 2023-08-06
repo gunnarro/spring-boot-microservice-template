@@ -1,7 +1,7 @@
 package org.gunnarro.microservice.mymicroservice.rest;
 
 import org.gunnarro.microservice.mymicroservice.DefaultTestConfig;
-import org.gunnarro.microservice.mymicroservice.domain.Parameter;
+import org.gunnarro.microservice.mymicroservice.domain.dto.Parameter;
 import org.gunnarro.microservice.mymicroservice.exception.ApplicationException;
 import org.gunnarro.microservice.mymicroservice.rest.RestClient.CollectionFormat;
 import org.junit.jupiter.api.Assertions;
