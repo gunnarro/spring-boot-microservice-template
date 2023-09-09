@@ -18,7 +18,6 @@ import static org.mockito.Mockito.when;
 /**
  * TODO Remove or Refactor. This class only serves as an example
  */
-@ContextConfiguration(classes = { MyServiceImpl.class, JdbcRepositoryImpl.class })
 class RestServiceControllerTest extends DefaultTestConfig {
     @Mock
     private MyServiceImpl myServiceMock;

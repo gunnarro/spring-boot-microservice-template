@@ -11,18 +11,13 @@ import java.sql.SQLException;
  */
 public class SubscriptionRM implements RowMapper<Subscription> {
     private static final String FIELD_SUBSCRIPTION_ID = "subscription_id";
-    private static final String FIELD_SUBSCRIPTION_NAME = "name";
-    private static final String FIELD_SUBSCRIPTION_TYPE = "type";
-    private static final String FIELD_SUBSCRIPTION_STATUS = "status";
-   
+    private static final String FIELD_CUSTOMER_ID = "customer_id";
 
     @Override
     public Subscription mapRow(ResultSet rs, int rowNum) throws SQLException {
         return Subscription.builder()
                 .id(rs.getLong(FIELD_SUBSCRIPTION_ID))
-                .name(rs.getString(FIELD_SUBSCRIPTION_NAME))
-                .type(rs.getString(FIELD_SUBSCRIPTION_TYPE))
-                .status(rs.getString(FIELD_SUBSCRIPTION_STATUS))
+                //   .customer(Customer.builder().id(rs.getLong(FIELD_CUSTOMER_ID)).build())
                 .build();
     }
 }

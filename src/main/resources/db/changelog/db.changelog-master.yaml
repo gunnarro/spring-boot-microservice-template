@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTableActivations
+      author: gunnarro
+      changes:
+        - createTable:
+            schemaName: masterdata
+            tableName: organization
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: orgNumber
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: orgName
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: createdDate
+                  type: datetime
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lastModifiedDate
+                  type: datetime
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false

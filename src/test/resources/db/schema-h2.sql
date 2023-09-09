@@ -2,28 +2,6 @@ CREATE SCHEMA IF NOT EXISTS erp;
 SET SCHEMA erp;
 
 --
--- create filed type table
---
-create table FIELD_TYPE (
-   FIELD_TYPE_ID int NOT NULL,
-   FIELD_NAME varchar(255) NOT NULL,
-   FIELD_TYPE varchar(255) NOT NULL,
---   FK_FIELD_TYPE_REFERENCE_ID varchar(255) NOT NULL,
-   constraint pk_field_type_id PRIMARY KEY (field_type_id)
-);
-
---
--- create customer profile table
---
-create table CUSTOMER_PROFILE (
-    ID int NOT NULL,
-    CUSTOMER_ID int NOT NULL,
-    FIELD_TYPE_ID INT NOT NULL,
-    FIELD_VALUE varchar(512),
-    constraint pk_id PRIMARY KEY (id)
-);
-
---
 -- create address table
 --
 create table ADDRESS (
@@ -74,6 +52,3 @@ create table SUBSCRIPTION (
     constraint PK_SUBSCRIPTION_ID primary key (SUBSCRIPTION_ID),
     foreign key (FK_CUSTOMER_ID) references CUSTOMER(CUSTOMER_ID)
 );
-
-
-
