@@ -36,7 +36,7 @@ import javax.validation.constraints.NotNull;
 @RequestMapping(path = "/restservice/v1", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
 public class RestServiceController {
-    private final static String REST_SERVICE_METRIC_NAME = "subscription.service.api";
+    private static final String REST_SERVICE_METRIC_NAME = "subscription.service.api";
     private final MyService myService;
 
     public RestServiceController(MyService myService) {
