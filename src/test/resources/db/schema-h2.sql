@@ -52,3 +52,6 @@ create table SUBSCRIPTION (
     constraint PK_SUBSCRIPTION_ID primary key (SUBSCRIPTION_ID),
     foreign key (FK_CUSTOMER_ID) references CUSTOMER(CUSTOMER_ID)
 );
+
+
+
