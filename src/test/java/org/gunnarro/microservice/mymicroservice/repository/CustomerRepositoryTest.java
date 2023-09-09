@@ -19,7 +19,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  * Thereafter it is looking for schema-${platform}.sql and data-${platform}.sql, where platform is set by the
  * 'spring.datasource.platform' application property (hsqldb, h2, oracle, mysql, postgresql etc.).
  */
-@Sql({"/db/schema-h2.sql", "/db/data-h2.sql"})
+@SqlGroup({
+        @Sql(statements = {
+                "DROP TABLE IF EXISTS SUBSCRIPTION;",
+                "DROP TABLE IF EXISTS CUSTOMER;",
+                "DROP TABLE IF EXISTS PERSON;",
+                "DROP TABLE IF EXISTS ADDRESS;",
+                "DROP TABLE IF EXISTS CUSTOMER_PROFILE;",
+                "DROP TABLE IF EXISTS FIELD_TYPE;"}),
+        @Sql({"/db/schema-h2.sql", "/db/data-h2.sql"})
+})
 @DataJpaTest
 @TestPropertySource("/test-jpa-application.properties")
 // opt uot the auto config of the test in-memory database
@@ -35,11 +44,11 @@ public class CustomerRepositoryTest {
         assertNotNull(customer);
         assertEquals(1, customer.getId());
         assertEquals("gunnar", customer.getPerson().getFirstName());
-        assertEquals(null, customer.getPerson().getMiddleName());
+        assertNull(customer.getPerson().getMiddleName());
         assertEquals("ronneberg", customer.getPerson().getLastName());
-        assertNotNull(customer.getPerson().getDateOfBirth().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        customer.getPerson().getDateOfBirth().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         assertEquals(1107196922222L, customer.getPerson().getSocialSecurityNumber());
-        assertEquals(null, customer.getPerson().getAddress());
+        assertNull(customer.getPerson().getAddress());
 
         assertEquals(2, customer.getSubscriptions().size());
         assertEquals("mobile 4G", customer.getSubscriptions().get(0).getName());
