@@ -1,7 +1,7 @@
-package org.gunnarro.microservice.mymicroservice.mymicroservice.repository.mapper;
+package org.gunnarro.microservice.mymicroservice.repository.mapper;
 
-import org.gunnarro.microservice.mymicroservice.mymicroservice.DefaultTestConfig;
-import org.gunnarro.microservice.mymicroservice.mymicroservice.repository.entity.Subscription;
+import org.gunnarro.microservice.mymicroservice.DefaultTestConfig;
+import org.gunnarro.microservice.mymicroservice.repository.entity.Subscription;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
