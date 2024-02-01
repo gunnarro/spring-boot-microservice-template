@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * TODO Remove or Refactor. This class only serves as an example.
+ */
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 

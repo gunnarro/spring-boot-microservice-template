@@ -1,7 +1,7 @@
-package org.gunnarro.microservice.mymicroservice.repository.mapper;
+package org.gunnarro.microservice.mymicroservice.mymicroservice.repository.mapper;
 
-import org.gunnarro.microservice.mymicroservice.DefaultTestConfig;
-import org.gunnarro.microservice.mymicroservice.repository.entity.Subscription;
+import org.gunnarro.microservice.mymicroservice.mymicroservice.DefaultTestConfig;
+import org.gunnarro.microservice.mymicroservice.mymicroservice.repository.entity.Subscription;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -19,7 +19,6 @@ class SubscriptionRMTest extends DefaultTestConfig {
     @Mock
     private ResultSet resultSetMock;
 
-    // TODO fixme
     @Test
     void mapToSubscription() throws SQLException {
         given(resultSetMock.getLong("subscription_id")).willReturn(12345678L);
