@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.gunnarro.microservice</groupId>
 		<artifactId>spring-boot-microservice-common-pom</artifactId>
-		<version>3.1.0-SNAPSHOT</version>
+		<version>3.1.0</version>
 		<relativePath/>
 	</parent>
 
