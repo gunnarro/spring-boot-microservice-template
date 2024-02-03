@@ -30,14 +30,15 @@ import org.gunnarro.microservice.mymicroservice.exception.ApplicationException;
 import org.gunnarro.microservice.mymicroservice.exception.RestClientApiException;
 
 /**
+ * NB! should rector to use RestClient in spring boot 3.2.0
  * TODO Remove if not used. RestClient should only be used when calling other
  * rest services!
- *
  * Generic rest client
  *
  * @author mentos
  *
  */
+@Deprecated
 @Slf4j
 public class RestClient {
     private static final String ACCEPT_APP_JSON = "application/json";
