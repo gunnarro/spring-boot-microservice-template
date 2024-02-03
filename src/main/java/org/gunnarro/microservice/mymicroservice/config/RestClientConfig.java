@@ -2,12 +2,13 @@ package org.gunnarro.microservice.mymicroservice.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.ssl.SSLContexts;
+import org.apache.hc.client5.http.config.RequestConfig;
+import org.apache.hc.client5.http.ssl.NoopHostnameVerifier;
+import org.apache.hc.client5.http.ssl.SSLConnectionSocketFactory;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
+import org.apache.hc.core5.ssl.SSLContexts;
+import org.apache.hc.core5.util.Timeout;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Configuration;
@@ -35,21 +36,21 @@ import org.gunnarro.microservice.mymicroservice.rest.RestClient;
 @Configuration
 @Slf4j
 public class RestClientConfig {
-        @Value("${rest.client.trust.keystore:}")
+    @Value("${rest.client.trust.keystore}")
     private String keystoreFilename;
-    @Value("${rest.client.trust.keystore.password:}")
+    @Value("${rest.client.trust.keystore.password}")
     private String keystorePassword;
-    @Value("${rest.client.client.keystore:}")
+    @Value("${rest.client.client.keystore}")
     private String clientKeystore;
-    @Value("${rest.client.client.keystore.password:}")
+    @Value("${rest.client.client.keystore.password}")
     private String clientKeystorePassword;
-    @Value("${rest.client.service.connect.timeout:}")
+    @Value("${rest.client.service.connect.timeout}")
     private Integer connectTimeout;
-    @Value("${rest.client.service.read.timeout:}")
+    @Value("${rest.client.service.read.timeout}")
     private Integer readTimeout;
-    @Value("${http.connectionpool.max-per-route:}")
+    @Value("${http.connectionpool.max-per-route}")
     private Integer maxConnectionPerRoute;
-    @Value("${http.connectionpool.max-threads:}")
+    @Value("${http.connectionpool.max-threads}")
     private Integer maxConnectionThreads;
     private final RestTemplateBuilder restTemplateBuilder;
 
@@ -132,16 +133,16 @@ public class RestClientConfig {
      */
     private HttpComponentsClientHttpRequestFactory useApacheHttpClientWithSsl() {
         RequestConfig config = RequestConfig.custom()
-                .setConnectTimeout(connectTimeout) // ms
-                .setConnectionRequestTimeout(readTimeout) // ms
-                .setSocketTimeout(readTimeout) // ms
+                .setConnectTimeout(Timeout.ofMilliseconds(connectTimeout)) // ms
+                .setConnectionRequestTimeout(Timeout.ofMilliseconds(readTimeout)) // ms
+                //      .setSocketTimeout(Timeout.ofMilliseconds(readTimeout)) // ms
                 .build();
 
         CloseableHttpClient httpClient = HttpClientBuilder.create()
                 .setDefaultRequestConfig(config)
-                .setSSLSocketFactory(getSSLConnectionSocketFactory())
-                .setMaxConnPerRoute(maxConnectionPerRoute)
-                .setMaxConnTotal(maxConnectionThreads)
+                //    .setSSLSocketFactory(getSSLConnectionSocketFactory())
+                //    .setMaxConnPerRoute(maxConnectionPerRoute)
+                //   .setMaxConnTotal(maxConnectionThreads)
                 .build();
 
         HttpComponentsClientHttpRequestFactory useApacheHttpClient = new HttpComponentsClientHttpRequestFactory();

@@ -16,21 +16,21 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * TODO Remove or Refactor. This class only serves as an example!
  */
 @Tag(name = "RestService", description = "Example for rest service implementation")
 @ApiResponses(value = {
-        @ApiResponse(responseCode = HttpStatusMsg.HTTP_400_CODE, description = HttpStatusMsg.HTTP_400_MSG, content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))}),
-        @ApiResponse(responseCode = HttpStatusMsg.HTTP_401_CODE, description = HttpStatusMsg.HTTP_401_MSG, content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))}),
-        @ApiResponse(responseCode = HttpStatusMsg.HTTP_403_CODE, description = HttpStatusMsg.HTTP_403_MSG, content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))}),
-        @ApiResponse(responseCode = HttpStatusMsg.HTTP_404_CODE, description = HttpStatusMsg.HTTP_404_MSG, content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))}),
-        @ApiResponse(responseCode = HttpStatusMsg.HTTP_429_CODE, description = HttpStatusMsg.HTTP_429_MSG, content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))}),
-        @ApiResponse(responseCode = HttpStatusMsg.HTTP_500_CODE, description = HttpStatusMsg.HTTP_500_MSG, content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))}),
-        @ApiResponse(responseCode = HttpStatusMsg.HTTP_503_CODE, description = HttpStatusMsg.HTTP_503_MSG, content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))})
+        @ApiResponse(responseCode = HttpStatusMsg.HTTP_400_CODE, description = HttpStatusMsg.HTTP_400_MSG, content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorResponse.class))}),
+        @ApiResponse(responseCode = HttpStatusMsg.HTTP_401_CODE, description = HttpStatusMsg.HTTP_401_MSG, content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorResponse.class))}),
+        @ApiResponse(responseCode = HttpStatusMsg.HTTP_403_CODE, description = HttpStatusMsg.HTTP_403_MSG, content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorResponse.class))}),
+        @ApiResponse(responseCode = HttpStatusMsg.HTTP_404_CODE, description = HttpStatusMsg.HTTP_404_MSG, content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorResponse.class))}),
+        @ApiResponse(responseCode = HttpStatusMsg.HTTP_429_CODE, description = HttpStatusMsg.HTTP_429_MSG, content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorResponse.class))}),
+        @ApiResponse(responseCode = HttpStatusMsg.HTTP_500_CODE, description = HttpStatusMsg.HTTP_500_MSG, content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorResponse.class))}),
+        @ApiResponse(responseCode = HttpStatusMsg.HTTP_503_CODE, description = HttpStatusMsg.HTTP_503_MSG, content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorResponse.class))})
 })
 @RestController
 @RequestMapping(path = "/restservice/v1", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -56,11 +56,11 @@ public class RestServiceController {
     @Operation(summary = "Get subscription", description = "return subscription information")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the subscription",
-                    content = {@Content(mediaType = "application/json",
+                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = SubscriptionDto.class))})
     })
     @GetMapping(path = "/subscriptions/{subscriptionId}")
-    public ResponseEntity<SubscriptionDto> getSubscription(@PathVariable @NotNull Integer subscriptionId) {
+    public ResponseEntity<SubscriptionDto> getSubscription(@PathVariable("subscriptionId") @NotNull Integer subscriptionId) {
         return ResponseEntity.ok(myService.getSubscription(subscriptionId));
     }
 
@@ -68,7 +68,7 @@ public class RestServiceController {
     @Operation(summary = "Create subscription", description = "Create new subscription")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Created the subscription",
-                    content = {@Content(mediaType = "application/json",
+                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = SubscriptionDto.class))})
     })
     @PostMapping(path = "/subscriptions")
@@ -81,11 +81,11 @@ public class RestServiceController {
     @Operation(summary = "Update subscription", description = "Update subscription")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Updated the subscription",
-                    content = {@Content(mediaType = "application/json",
+                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = SubscriptionDto.class))})
     })
     @PutMapping(path = "/subscriptions/{subscriptionId}")
-    public ResponseEntity<SubscriptionDto> updateSubscription(@PathVariable @NotNull Integer subscriptionId, @RequestBody @Valid SubscriptionDto subscription) {
+    public ResponseEntity<SubscriptionDto> updateSubscription(@PathVariable("subscriptionId") @NotNull Integer subscriptionId, @RequestBody @Valid SubscriptionDto subscription) {
         log.info("update: {} ", subscriptionId);
         return ResponseEntity.ok(myService.saveSubscription(subscription));
     }
@@ -94,11 +94,11 @@ public class RestServiceController {
     @Operation(summary = "Delete subscription", description = "delete subscription with subscriptionId")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Deleted the subscription",
-                    content = {@Content(mediaType = "application/json",
+                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = SubscriptionDto.class))})
     })
     @DeleteMapping(path = "/subscriptions/{subscriptionId}")
-    public ResponseEntity<Integer> deleteSubscription(@PathVariable @NotNull Integer subscriptionId) {
+    public ResponseEntity<Integer> deleteSubscription(@PathVariable("subscriptionId") @NotNull Integer subscriptionId) {
         log.info("delete: {} ", subscriptionId);
         myService.deleteSubscription(subscriptionId);
         return ResponseEntity.ok(subscriptionId);

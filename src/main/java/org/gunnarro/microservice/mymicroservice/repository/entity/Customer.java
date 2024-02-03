@@ -2,7 +2,7 @@ package  org.gunnarro.microservice.mymicroservice.repository.entity;
 
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 /**

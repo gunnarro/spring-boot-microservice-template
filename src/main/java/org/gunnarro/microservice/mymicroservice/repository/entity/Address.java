@@ -2,7 +2,7 @@ package org.gunnarro.microservice.mymicroservice.repository.entity;
 
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Table(name = "ADDRESS", schema = "erp")
 @Entity

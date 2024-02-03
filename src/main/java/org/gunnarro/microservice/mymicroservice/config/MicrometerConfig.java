@@ -10,7 +10,16 @@ import org.springframework.context.annotation.Configuration;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.config.MeterFilter;
 
-@Configuration
+/**
+ * FIXME build properties is not working, therefore disabled, this is a minor task.
+ *
+ * In a Spring Boot project, we add the build-info goal to the spring-boot-maven-plugin within the project’s pom.xml file:
+ * BuildProperties needs the <id>build-info</id> in the <artifactId>spring-boot-maven-plugin</artifactId>, ref pom.xml
+ *
+ * The application version is used in grafana dashbord to display current deployed version.
+ * This is nice to have and particular when many instances is running of an application.
+ */
+//@Configuration
 public class MicrometerConfig {
 
     @Bean

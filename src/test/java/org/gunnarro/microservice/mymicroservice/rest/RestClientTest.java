@@ -48,7 +48,7 @@ class RestClientTest extends DefaultTestConfig {
             RestClient.createAndValidateUriParameter("name", null);
         });
 
-        Assertions.assertEquals(400, thrown.getRawStatusCode());
+        Assertions.assertEquals("400 Required parameter value is not set! name=name, value=null", thrown.getMessage());
         Assertions.assertTrue(Objects.requireNonNull(thrown.getMessage()).contains("Required parameter value is not set"));
     }
 

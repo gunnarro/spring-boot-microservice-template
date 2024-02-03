@@ -4,13 +4,14 @@ import org.gunnarro.microservice.mymicroservice.exception.ApplicationException;
 
 import java.util.Arrays;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.ApplicationPidFileWriter;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.PropertySource;
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
@@ -29,6 +30,7 @@ import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties
  * <a href="https://localhost:9999/swagger-ui/index.html">https://localhost:9999/swagger-ui/index.html</a>
  */
 @SpringBootApplication
+@ServletComponentScan
 @EnableEncryptableProperties
 @Slf4j
 public class Application {
