@@ -32,9 +32,9 @@ import org.gunnarro.microservice.mymicroservice.exception.RestClientApiException
 /**
  * TODO Remove if not used. RestClient should only be used when calling other
  * rest services!
- * 
+ *
  * Generic rest client
- * 
+ *
  * @author mentos
  *
  */
@@ -53,8 +53,8 @@ public class RestClient {
     public static final String URL_PARAM_LIMIT = "limit";
     public static final String URL_PARAM_LIMIT_DEFAULT_VALUE = "250";
 
-    private RestTemplate restTemplate;
-    private String basePath;
+    private final RestTemplate restTemplate;
+    private final String basePath;
 
     public enum CollectionFormat {
         CSV(","), TSV("\t"), SSV(" "), PIPES("|"), MULTI(null);
@@ -70,11 +70,6 @@ public class RestClient {
         }
     }
 
-    /**
-     * 
-     * @param basePath
-     * @param restTemplate
-     */
     public RestClient(String basePath, RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
         this.basePath = basePath;
@@ -102,7 +97,7 @@ public class RestClient {
 
     /**
      * Converts a parameter to a {@link MultiValueMap} for use in REST requests
-     * 
+     *
      * @param collectionFormat The format to convert to
      * @param name The name of the parameter
      * @param value The parameter's value
@@ -149,7 +144,7 @@ public class RestClient {
 
     /**
      * Format the given parameter object into string.
-     * 
+     *
      * @param param the object to convert
      * @return String the parameter represented as a String
      */
@@ -159,7 +154,7 @@ public class RestClient {
         } else if (param instanceof Collection) {
             StringBuilder b = new StringBuilder();
             for (Object o : (Collection<?>) param) {
-                if (b.length() > 0) {
+                if (!b.isEmpty()) {
                     b.append(",");
                 }
                 b.append(String.valueOf(o));
@@ -186,56 +181,25 @@ public class RestClient {
         return uriBuilder.build().toUri();
     }
 
-    /**
-     * 
-     * @param path
-     * @param uriParameters
-     * @param method
-     * @return
-     */
     public <T> T invokeAPIDelete(String path, Map<String, Object> uriParameters) {
         return invokeAPI(buildUri(basePath, path, uriParameters, null), HttpMethod.DELETE, new HashMap<>(), new ParameterizedTypeReference<T>() {
         });
     }
 
-    /**
-     * 
-     * @param path
-     * @param uriParameters
-     * @param method
-     * @param bodyObj
-     * @return
-     */
     public <T> T invokeAPIPut(String path, Map<String, Object> uriParameters, Object bodyObj, ParameterizedTypeReference<T> returnType) {
         return invokeAPI(buildUri(basePath, path, uriParameters, null), HttpMethod.PUT, bodyObj, returnType);
     }
 
-    /**
-     * 
-     * @param path
-     * @param uriParameters
-     * @param method
-     * @param bodyObj
-     * @return
-     */
     public <T> T invokeAPIGet(String path, Map<String, Object> uriParameters, Map<String, String> queryParameters, ParameterizedTypeReference<T> returnType) {
         return invokeAPI(buildUri(basePath, path, uriParameters, queryParameters), HttpMethod.GET, null, returnType);
     }
 
-    /**
-     * 
-     * @param path
-     * @param uriParameters
-     * @param method
-     * @param bodyObj
-     * @return
-     */
     public <T> T invokeAPIGet(String path, Map<String, Object> uriParameters, ParameterizedTypeReference<T> returnType) {
         return invokeAPIGet(path, uriParameters, null, returnType);
     }
 
     /**
-     * 
+     *
      * @param path The sub-path of the HTTP URL
      * @param uriParameters
      * @param bodyObj
@@ -251,7 +215,6 @@ public class RestClient {
      * Invoke API by sending HTTP request with the given options.
      *
      * @param <T> the return type to use
-     * @param path The sub-path of the HTTP URL
      * @param method The request method
      * @param bodyObj The request body object. use null if none.
      * @param returnType The return type into which to deserialize the response.
@@ -278,7 +241,7 @@ public class RestClient {
                     responseEntity.getBody());
             return responseEntity.getBody();
         } catch (HttpClientErrorException e) {
-            if (e.getStatusCode().compareTo(HttpStatus.NOT_FOUND) == 0 || e.getStatusCode().compareTo(HttpStatus.NO_CONTENT) == 0) {
+            if (e.getStatusCode().value() == HttpStatus.NOT_FOUND.value() || e.getStatusCode().value() == HttpStatus.NO_CONTENT.value()) {
                 log.debug("http returned 4xx status, calling api, uri={}, method={}, httpStatus={}, message={}, return null.}", uri.getPath(), method,
                         e.getStatusCode().value(), e.getResponseBodyAsString());
                 return null;
@@ -311,7 +274,7 @@ public class RestClient {
 
     /**
      * Add headers to the request that is being built
-     * 
+     *
      * @param headers The headers to add
      * @param requestBuilder The current request
      */

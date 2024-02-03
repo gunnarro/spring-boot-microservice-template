@@ -6,12 +6,14 @@ import org.gunnarro.microservice.mymicroservice.exception.ApplicationException;
 import org.gunnarro.microservice.mymicroservice.exception.NotFoundException;
 import org.gunnarro.microservice.mymicroservice.exception.RestClientApiException;
 import org.gunnarro.microservice.mymicroservice.exception.RestInputValidationException;
+import jakarta.annotation.Nullable;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
@@ -42,8 +44,9 @@ import java.util.stream.Stream;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @Slf4j
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+    @Nullable
     @Override
-    public ResponseEntity<Object> handleMethodArgumentNotValid(final MethodArgumentNotValidException exception, final HttpHeaders headers, final HttpStatus status, final WebRequest request) {
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(final MethodArgumentNotValidException exception, final HttpHeaders headers, final HttpStatusCode status, final WebRequest request) {
         String fieldErrorsMessage = exception
                 .getBindingResult()
                 .getFieldErrors()

@@ -1,6 +1,6 @@
 package org.gunnarro.microservice.mymicroservice.config;
 
-import jakarta.sql.DataSource;
+import javax.sql.DataSource;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
