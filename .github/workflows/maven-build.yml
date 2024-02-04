@@ -29,7 +29,7 @@ jobs:
     - name: install
       run: mvn -B clean install --file pom.xml -P github -s settings-github.xml
       env:
-        GITHUB_TOKEN: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
       
     - name: code analyze
